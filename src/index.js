@@ -5,17 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<<<<<<< HEAD
+root.render(<App />)
 
-  <App />
 
-=======
-  
-    <App />
- 
->>>>>>> a83a4aacbb88a2dabc88333c96f8c5ea13c30d6a
-);
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
