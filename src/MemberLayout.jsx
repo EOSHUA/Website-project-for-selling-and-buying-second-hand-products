@@ -1,12 +1,15 @@
 import React from "react";
-import Publish from "./Publish";
-import MemberDashboard from "./MemberDashboard";
+import LogIn from "./LogIn";
+import SignIn from "./SignIn";
+import { Routes, Route } from "react-router-dom";
 
 export default function MemberLayout() {
   return (
     <div>
-      <Publish />
-      <MemberDashboard />
+      <Routes>
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signin" element={<SignIn />} />
+      </Routes>
     </div>
   );
 }
