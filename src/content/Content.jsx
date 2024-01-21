@@ -16,7 +16,6 @@ export default function Content() {
         <Items />
         <SubCategories />
       </ItemsContext.Provider>
-
       <ItemInfo />
       <Categories />
     </div>
