@@ -1,0 +1,11 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.content{
+    display: flex;
+    max-width: 100%;
+    gap:10px;
+    flex-wrap: wrap;
+}

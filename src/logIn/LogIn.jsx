@@ -1,6 +1,6 @@
 import React from "react";
 
-import MemberDashboard from "../MemberDashboard";
+import MemberDashboard from "../memberDashBoard/MemberDashboard";
 import { useState } from "react";
 
 export default function LogIn() {

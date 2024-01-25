@@ -1,6 +1,6 @@
-import logo from './logo.svg';
+import logo from './logo.png'
 import './App.css';
-import Layout from './Layout';
+import Layout from './layout/Layout';
 
 function App() {
   return (

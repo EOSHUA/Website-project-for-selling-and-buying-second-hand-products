@@ -27,11 +27,11 @@ export default function Publish() {
   };
 
   
-  const getAllTheSabCategory = (subCategory) => {
+  const getAllTheSabCategory = (e) => {
     try {
-      setUserData({ ...userData, [category]: e.target.value });
+      setUserData({ ...userData, ['category']: e.target.value });
       const data = axios
-        .get(`http://localhost:3000/getAllTheCategory/${subCategory}`)
+        .get(`http://localhost:3000/getAllTheCategory/${e.target.value}`)
         .then((response) => setMenu(response));
     } catch (e) {
       console.log(e);
@@ -40,7 +40,7 @@ export default function Publish() {
   return (
     <div onSubmit={handleSubmit}>
       {Object.values(menu).map((cat, e) => {
-        <div id="category" onClick={getAllTheSabCategory(e.target.value)}>
+        <div id="category" onClick={getAllTheSabCategory(e)}>
           {cat}
         </div>;
       })}
