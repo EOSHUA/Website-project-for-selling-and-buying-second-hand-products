@@ -14,8 +14,22 @@ export default function Categories() {
 
   return (
   <>
-    <div className="categories">
-hjkhjuikl
+   
+    <div className="ContainerCategories">
+      <h2>What would you like to buy?  </h2>
+        <div className="categories">
+          <div className="categoriesItem"></div>
+          <div className="categoriesItem"></div>
+          <div className="categoriesItem"></div>
+          <div className="categoriesItem"></div>
+          <div className="categoriesItem"></div>
+          
+          {Object.values(menu).map((categoriesItem, e) => {
+            <div id="categoriesItem">
+              {categoriesItem}
+            </div>;
+          })}
+        </div>
     </div>
   </>
   );
