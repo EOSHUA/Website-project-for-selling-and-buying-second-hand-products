@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const URL_MONGO = "mongodb+srv://test:1234@cluster0.onb7tvx.mongodb.net/aviad?retryWrites=true&w=majority"
+const URL_MONGO = "mongodb+srv://1312255:Aa123456@cluster0.29rkirr.mongodb.net/giving"
 
 
 async function connect() {
@@ -7,7 +7,6 @@ async function connect() {
         mongoose.connect(URL_MONGO)
             .then(res => console.log("**** DB - Connection Success ****"))
 
-        
     }
     catch (err) {
         console.log("DB - Error : ", err)

@@ -1,5 +1,17 @@
 
-const userController = require('./user.controller');
+const guestController = require('./guest.controller');
+
+
+
+async function getAllItems() {
+    try {
+        const data = await guestController.read({});
+        return data
+
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 async function addNewUser(data) {
 
@@ -28,7 +40,7 @@ async function handleValidation(reqBody) {
     }
 }
 
-module.exports = {addNewUser}
+module.exports = { addNewUser, getAllItems }
 
 // const starter = async () => {
 //     const db = require('../DL/db')
