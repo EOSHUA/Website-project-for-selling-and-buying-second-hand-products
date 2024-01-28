@@ -1,12 +1,31 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Handjet:wght@200;300;400&family=M+PLUS+Rounded+1c&family=Montserrat:ital,wght@0,100;1,200&display=swap');
+
 *{
     padding: 0;
     margin:0 ;
 }
-.categories{
-    margin-top: 10px;
-   background-color: black;
+.ContainerCategories{
+   margin-top: 10px;
+   background-color:  #eceae6;
    width: 100%;
    height: 250px;
    box-sizing:content-box;
-   padding: 10px;
+   box-shadow: 13px 14px 8px 2px rgba(0,0,0,.1);
+}
+.categories{
+   display: flex;
+   justify-content: space-around;
+}
+h2{
+    text-align: justify;
+   
+font-family: 'Montserrat', sans-serif;
+}
+.categoriesItem{
+  margin-top: 1%;
+  background-color: burlywood;
+  width: 10em;
+  height: 10em;
+  border-radius: 100%;
 }
