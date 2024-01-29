@@ -13,6 +13,10 @@ const guestService = require('./guest.service')
 //         res.status(err?.code ?? 400).send(err?.msg)
 //     }
 // })
+
+
+
+
 router.get('/', async (req, res) => {
     try {
         let result = await guestService.getAllItems();
@@ -22,6 +26,17 @@ router.get('/', async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
+
+router.get(`/category`, async (req, res) => {
+    try {
+        let result = await guestService.getCategory(parentId);
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
+
 
 
 

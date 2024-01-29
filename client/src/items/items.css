@@ -3,11 +3,12 @@
     margin: 0;
 }
 .items{
-    background-color: rgb(236, 139, 12);
+    background-color: #deb887;
     width: 75%;
     height: 1500px;
     margin-left: 8%;
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
+    margin-top: 10em;
 }
