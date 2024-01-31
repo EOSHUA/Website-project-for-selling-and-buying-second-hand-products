@@ -10,14 +10,13 @@ import {ItemsContext} from '../content/Content'
 
 
 export default function Categories(props) {
-//  const [menu, setMenu] = useState({ data: [] });
-//  const {currentItems,setCurrentItems} = useContext(ItemsContext);
+  const [currentItems, setCurrentItems] = useState([]);
 
  const navigate = useNavigate();
 
   useEffect(() => {
     try {
-      axios.get(`http://localhost:4545/`).then((response) =>  {props.setCurrentItems(response.data )
+      axios.get(`http://localhost:4545/`).then((response) =>  {setCurrentItems(response.data )
            console.log(response.data);
           });
     } catch (e) {
@@ -36,7 +35,7 @@ export default function Categories(props) {
         <h2>What would you like to buy? </h2>
         <div className="categories">
          {
- props.currentItems.map((e) => (
+ currentItems.map((e) => (
     <div key={e._id} onClick={() => getToSub(e)}>
       <img className="imgCategory" src={e.image} alt={e.category} />
       <div className="categoryName">{e.category}</div>

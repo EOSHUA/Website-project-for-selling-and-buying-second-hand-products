@@ -3,20 +3,23 @@ import Item from "../item/Item";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import './itemList.css'
+import { useParams } from "react-router-dom";
 
 export default function ItemList({ Items }) {
-
   const [items, setItems] = useState({ data: [] });
-
+  const params=useParams()
+  const urlCat=window.location.href.split('/')[6]
+  const urlSub=window.location.href.split('/')[6]
+  console.log(urlCat);
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:4545/`)
+        .get(`http://localhost:4545/${urlCat?urlCat:''}`)
         .then((response) => setItems({ data: response.data }));
     } catch (e) {
       console.log(e);
     }
-  }, []);
+  }, [urlCat]);
 
   
   return (

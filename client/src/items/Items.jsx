@@ -9,6 +9,7 @@ export default function Items({ category, subCategory }) {
   const { Itemss, setItems } = useContext(ItemsContext);
 
   const DisplayItemOnTheScreen = () => {
+    
     // if (Items == null) {
       // useEffect(() => {
       //   const data = axios

@@ -14,32 +14,28 @@ export const ItemsContext = createContext({
 });
 
 export default function Content() {
-  const [currentItems, setCurrentItems] = useState([]);
+  
 
   return (
     <div className="content">
       <Routes>
-        <Route
-          path="/subcategories/:catName/:id"
-          element={
-            <SubCategories
-              currentItems={currentItems}
-              setCurrentItems={setCurrentItems}
-            />
-          }
-        ></Route>
-        <Route
-          path="/"
-          element={
-            <Categories
-              currentItems={currentItems}
-              setCurrentItems={setCurrentItems}
-            />
-          }
-        ></Route>
-        {/* <ItemsContext.Provider value={{ setCurrentItems, currentItems }}> */}
-        {/* <Categories currentItems={currentItems} setCurrentItems={setCurrentItems}/> */}
-        {/* <SubCategories currentItems={currentItems} setCurrentItems={setCurrentItems}/> */}
+            <Route
+              path="/subcategories/:catName/:id"
+              element={
+                <SubCategories
+                  
+                />
+              }
+            ></Route>
+            <Route
+              path="/"
+              element={
+                <Categories
+                
+                />
+              }
+            ></Route>
+          
       </Routes>
       <Items />
       <ItemInfo />

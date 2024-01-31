@@ -38,6 +38,18 @@ router.post(`/subCategory/:cat`, async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
+router.get(`/:id`, async (req, res) => {
+    try {
+        
+        let result = await guestService.getSubCategory(req.params.id);
+       
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
+
 
 
 
