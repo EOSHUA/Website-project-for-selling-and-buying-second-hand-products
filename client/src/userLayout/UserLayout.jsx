@@ -7,12 +7,13 @@ import { BrowserRouter,Routes,Route} from "react-router-dom";
 export default function UserLayout() {
   return (
     <div className="userLayout">
-      <Header />
-      <Routes>
+      <Content />
+      {/* <Routes>
       
+     
       <Route path="/" element={<Content />}></Route>
       </Routes>
-   
+    */}
     </div>
   );
 }

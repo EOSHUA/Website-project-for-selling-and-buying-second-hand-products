@@ -2,26 +2,50 @@ import React from "react";
 import Categories from "../categories/Categories";
 
 import ItemInfo from "../itemInfo/ItemInfo";
-import { useState,createContext } from "react";
+import { useState, createContext } from "react";
 import Items from "../items/Items";
-import './content.css'
-import { Route} from "react-router-dom";
+import "./content.css";
+import { Route, Routes } from "react-router-dom";
+import SubCategories from "../subCategories/SubCategories";
 
-export const ItemsContext = React.createContext({});
+export const ItemsContext = createContext({
+  // currentItems: [],
+  // setCurrentItems: () => [],
+});
 
 export default function Content() {
-  const [Itemss, setItems] = useState({});
+  const [currentItems, setCurrentItems] = useState([]);
 
   return (
     <div className="content">
-      <ItemsContext.Provider value={{ Itemss, setItems }}>
+      <Routes>
+        <Route
+          path="/subcategories/:catName/:id"
+          element={
+            <SubCategories
+              currentItems={currentItems}
+              setCurrentItems={setCurrentItems}
+            />
+          }
+        ></Route>
+        <Route
+          path="/"
+          element={
+            <Categories
+              currentItems={currentItems}
+              setCurrentItems={setCurrentItems}
+            />
+          }
+        ></Route>
+        {/* <ItemsContext.Provider value={{ setCurrentItems, currentItems }}> */}
+        {/* <Categories currentItems={currentItems} setCurrentItems={setCurrentItems}/> */}
+        {/* <SubCategories currentItems={currentItems} setCurrentItems={setCurrentItems}/> */}
+      </Routes>
+      <Items />
+      <ItemInfo />
       
-        
-        <Categories />
-         <Items/>
-        <ItemInfo />
-      
-      </ItemsContext.Provider>
+
+      {/* </ItemsContext.Provider> */}
     </div>
   );
 }

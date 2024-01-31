@@ -1,5 +1,6 @@
 
 const guestController = require('./guest.controller');
+const { ObjectId } = require('mongodb'); // Import ObjectId
 
 
 
@@ -16,8 +17,9 @@ async function getAllItems() {
 
 async function getSubCategory(parentId) {
     try {
-        const data = await guestController.read({parentId:ObjectId(parentId)  });
-        return data
+        const data = await guestController.read({parentId: new ObjectId(parentId) });
+        console.log(data);
+        return data;
     } catch (err) {
         console.log(err);
     }

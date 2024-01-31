@@ -16,7 +16,7 @@ export default function Item({items}) {
 
   return (
     <>
-    {console.log(items)}
+   
       {<img className="imgCategory" src={items.image}></img>}
       <div className="categoryName">{items.category}</div>
    

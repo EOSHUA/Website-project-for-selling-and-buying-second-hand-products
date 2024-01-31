@@ -1,26 +1,29 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import axios from "axios";
-import { ItemsContext } from "../content/Content";
+import { useParams } from "react-router-dom";
+import {ItemsContext} from '../content/Content'
 
-export default function SubCategories({cat}) {
- 
-  const { Itemss, setItems } = useContext(ItemsContext);
 
-  const getByCategory = async () => {
 
-    const {data} = await axios.get(`http://localhost:4545/subCategory/${cat}`,
-      {parentId:"65b64252f4874f7f2148075a"}).then((res) => console.log(res));
-      
-      
-  };
+export default function SubCategories(props) {
+
+//  const {currentItems,setCurrentItems}=useContext(ItemsContext)
+const params=useParams()
+
+ useEffect(()=>{
+  try {
+    const data =  axios.post(`http://localhost:4545/subCategory/${params.cat}`,
+    {parentId:params.id}).then(res => props.setCurrentItems(res.data))
+  } catch (error) {
+    console.log(error);
+  }
+ },[])
+
+
 
   return(
   <div>
-    <p>hhhhhhhh</p>
-    { console.log("cat")}
-    {getByCategory()}
-    
-    
+    <h1>hello sub categories</h1>
     </div>
     )
 }
