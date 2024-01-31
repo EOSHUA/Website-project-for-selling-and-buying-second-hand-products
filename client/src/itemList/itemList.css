@@ -3,8 +3,19 @@
     margin: 0;
 }
 .itemList{
-    background-color: blue;
+    background-color: #8080ec;
     height: 100%;
     width: 70%;
+    display: flex;
+    flex-wrap: wrap;
     
 }
+.imgItems{
+    width: 7em;
+    height: 7em;
+     cursor: pointer;
+  }
+  
+  .imgItems:hover{
+   border: 3px solid  #deb887;
+  }

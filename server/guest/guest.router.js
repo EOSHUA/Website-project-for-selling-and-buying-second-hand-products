@@ -27,9 +27,11 @@ router.get('/', async (req, res) => {
     }
 })
 
-router.get(`/category`, async (req, res) => {
+router.get(`/subCategory/:cat`, async (req, res) => {
     try {
-        let result = await guestService.getCategory(parentId);
+         console.log(req.body);
+        let result = await guestService.getSubCategory(req.body.parentId);
+       
         res.send(result)
     }
     catch (err) {

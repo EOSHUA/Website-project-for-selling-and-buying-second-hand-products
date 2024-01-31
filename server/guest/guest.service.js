@@ -5,7 +5,7 @@ const guestController = require('./guest.controller');
 
 async function getAllItems() {
     try {
-        const data = await guestController.read({});
+        const data = await guestController.read({ parentId: { $exists: !true } });
         return data
 
     } catch (err) {
@@ -14,14 +14,16 @@ async function getAllItems() {
 }
 
 
-async function getCategory(parentId) {
+async function getSubCategory(parentId) {
     try {
-        const data = await guestController.read({parentId: parentId });
+        const data = await guestController.read({parentId:ObjectId(parentId)  });
         return data
     } catch (err) {
         console.log(err);
     }
 }
+
+
 
 // async function addNewUser(data) {
 
@@ -90,4 +92,4 @@ async function getCategory(parentId) {
     
     
     
-    module.exports = { getAllItems , getCategory }
+    module.exports = { getAllItems , getSubCategory }

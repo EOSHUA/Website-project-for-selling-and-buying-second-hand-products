@@ -4,8 +4,8 @@ async function create(data) {
     return await userModel.create(data)
 }
 
-async function read() {
-    return data = await guestModel.find({ parentId: { $exists: !true } })
+async function read(filter = {}) {
+    return data = await guestModel.find(filter)
 }
 
 async function readOne(filter = {}) {
