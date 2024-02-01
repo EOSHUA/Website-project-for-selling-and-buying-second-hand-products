@@ -7,6 +7,10 @@ app.use(cors())
 app.use(express.json())
 
 const guestRouter = require('./guest/guest.router')
-app.use('/', guestRouter)
+app.use('/guest', guestRouter)
+
+
+// const guestRouter = require('./guest/guest.router')
+// app.use('/:hkkhk', itemsRouter)
 
 app.listen(4545, () => console.log("### Server is up ###"))

@@ -16,7 +16,7 @@ export default function Categories(props) {
 
   useEffect(() => {
     try {
-      axios.get(`http://localhost:4545/`).then((response) =>  {setCurrentItems(response.data )
+      axios.get(`http://localhost:4545/guest`).then((response) =>  {setCurrentItems(response.data )
            console.log(response.data);
           });
     } catch (e) {

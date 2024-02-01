@@ -3,7 +3,7 @@
     margin: 0;
 }
 .items{
-    background-color: #deb887;
+    background-color: #f5f1ee;
     width: 75%;
     height: 1500px;
     margin-left: 8%;
@@ -11,4 +11,5 @@
     flex-wrap: wrap;
     padding: 20px;
     margin-top: 10em;
+    box-shadow: 13px 14px 8px 2px #0000001a;
 }

@@ -12,7 +12,7 @@ const params=useParams()
 
  useEffect(()=>{
   try {
-    const data =  axios.post(`http://localhost:4545/subCategory/${params.cat}`,
+    const data =  axios.post(`http://localhost:4545/guest/subCategory/${params.cat}`,
     {parentId:params.id}).then(res => setCurrentItems(res.data))
   } catch (error) {
     console.log(error);

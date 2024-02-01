@@ -14,7 +14,7 @@ export default function ItemList({ Items }) {
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:4545/${urlCat?urlCat:''}`)
+        .get(`http://localhost:4545/guest/${urlCat?urlCat:''}`)
         .then((response) => setItems({ data: response.data }));
     } catch (e) {
       console.log(e);
@@ -23,21 +23,17 @@ export default function ItemList({ Items }) {
 
   
   return (
+    <>
     <div className="itemList">
-      {/* {Object.values(Items).map((item) => {
-        <Item item={item} key={item.id} />;
-      })} */}
-
-
-
     {items.data && items.data.map((item) =>(
                   <div key={item.image} >
                       <Item items={item} key={item.id} />
-                   
                   </div>
                   
                 ))}
     </div>
+    
+    </>
 
     
   );
