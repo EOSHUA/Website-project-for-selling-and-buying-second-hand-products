@@ -34,6 +34,6 @@ const mongoose = require('mongoose');
 //     }
 // })
 
-const userModel = mongoose.model('categories',)
+const catModel = mongoose.model('categories',)
 
-module.exports = userModel
+module.exports = catModel

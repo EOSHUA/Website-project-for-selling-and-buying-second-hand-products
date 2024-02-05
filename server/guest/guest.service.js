@@ -1,10 +1,10 @@
 
 const guestController = require('./guest.controller');
-const { ObjectId } = require('mongodb'); // Import ObjectId
+const { ObjectId } = require('mongodb'); 
 
 
 
-async function getAllItems() {
+async function getAllCategoris() {
     try {
         const data = await guestController.read({ parentId: { $exists: !true } });
         return data
@@ -94,4 +94,4 @@ async function getSubCategory(parentId) {
     
     
     
-    module.exports = { getAllItems , getSubCategory }
+    module.exports = { getAllCategoris , getSubCategory }

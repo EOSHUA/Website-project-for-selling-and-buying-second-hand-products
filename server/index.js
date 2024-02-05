@@ -10,7 +10,9 @@ const guestRouter = require('./guest/guest.router')
 app.use('/guest', guestRouter)
 
 
-// const guestRouter = require('./guest/guest.router')
-// app.use('/:hkkhk', itemsRouter)
+const itemsRouter = require('./items/items.router')
+app.use('/items', itemsRouter)
+
+
 
 app.listen(4545, () => console.log("### Server is up ###"))

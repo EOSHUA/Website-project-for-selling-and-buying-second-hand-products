@@ -19,7 +19,7 @@ const guestService = require('./guest.service')
 
 router.get('/', async (req, res) => {
     try {
-        let result = await guestService.getAllItems();
+        let result = await guestService.getAllCategoris();
         res.send(result)
     }
     catch (err) {

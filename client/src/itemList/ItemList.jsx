@@ -10,11 +10,11 @@ export default function ItemList({ Items }) {
   const params=useParams()
   const urlCat=window.location.href.split('/')[6]
   const urlSub=window.location.href.split('/')[6]
-  console.log(urlCat);
+  
   useEffect(() => {
     try {
       axios
-        .get(`http://localhost:4545/guest/${urlCat?urlCat:''}`)
+        .get(`http://localhost:4545/items/`)
         .then((response) => setItems({ data: response.data }));
     } catch (e) {
       console.log(e);
