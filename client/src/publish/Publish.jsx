@@ -17,25 +17,25 @@ export default function Publish() {
   };
 
   const getAllTheCategory = (e) => {
-    try {
-      const data = axios
-        .get("http://localhost:3000/getAllTheCategory")
-        .then((response) => setMenu(response));
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   const data = axios
+    //     .get("http://localhost:3000/getAllTheCategory")
+    //     .then((response) => setMenu(response));
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   
   const getAllTheSabCategory = (e) => {
-    try {
-      setUserData({ ...userData, ['category']: e.target.value });
-      const data = axios
-        .get(`http://localhost:3000/getAllTheCategory/${e.target.value}`)
-        .then((response) => setMenu(response));
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   setUserData({ ...userData, ['category']: e.target.value });
+    //   const data = axios
+    //     .get(`http://localhost:3000/getAllTheCategory/${e.target.value}`)
+    //     .then((response) => setMenu(response));
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
   return (
     <div onSubmit={handleSubmit}>

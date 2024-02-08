@@ -6,6 +6,7 @@ async function connect() {
     try {
         mongoose.connect(URL_MONGO)
             .then(res => console.log("**** DB - Connection Success ****"))
+            
 
     }
     catch (err) {

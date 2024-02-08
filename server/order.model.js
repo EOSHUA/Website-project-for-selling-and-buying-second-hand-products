@@ -19,7 +19,7 @@ const orderSchema = new mongoose.Schema({
     }],
     orderDate: {
         type: Date,
-        default: Date.now
+        default: Date.now[0]
     }
 })
 
@@ -28,6 +28,7 @@ const orderModel = mongoose.model('order', orderSchema)
 module.exports = orderModel
 
 const starter = async () => {
+    
     const db = require('./DL/db')
     await db.connect()
 
@@ -49,7 +50,8 @@ const starter = async () => {
     console.log(result[0].userId);
     console.log(result[0].items);
 }
-starter()
+// starter()
+
 // ---------------------------------------------------
 // ---------------------------------------------------
 // ---------------------------------------------------

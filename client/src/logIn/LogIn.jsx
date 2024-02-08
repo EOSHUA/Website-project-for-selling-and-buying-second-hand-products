@@ -1,39 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
+import "./login.css";
 
-import MemberDashboard from "../memberDashBoard/MemberDashboard";
-import { useState } from "react";
+export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
-export default function LogIn() {
-  const [userData, setUserData] = useState({});
-
-  const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.id]: e.target.value });
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userData);
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    if (rememberMe) {
+      console.log("Remember me is checked");
+    }
+
+    console.log(`Submitted username: ${username}, password: ${password}`);
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input type="text" id="Name" onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            password:
-            <input type="password" id="password" onChange={handleChange} />
-          </label>
-          <br />
-          <label>
-            submit:
-            <input type="submit" value="Submit" />
-          </label>
-      </form>
+    <>
+      <form className="form-wrap" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          className="input"
+          id="user_login"
+          placeholder="Username"
+          value={username}
+          onChange={handleUsernameChange}
+        />
+        <input
+          type="password"
+          className="input"
+          id="user_pass"
+          placeholder="Password"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <div className="remember_me_warp">
+          <input
+            type="checkbox"
+            className="checkbox"
+            id="remember_me"
+            checked={rememberMe}
+            onChange={(event) => setRememberMe(event.target.checked)}
+          />
+          <label htmlFor="remember_me">Remember me</label> {/* Fixed label */}
+        </div>
 
-      
-      <MemberDashboard />
-    </div>
+        <input type="submit" className="button" value="Login" />
+        <p>
+          <a href="#">Forget your password?</a>
+        </p>
+      </form>
+      <div className="help-text">
+      </div>
+    </>
   );
 }
