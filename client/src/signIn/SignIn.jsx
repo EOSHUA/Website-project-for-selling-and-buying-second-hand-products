@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import '../memberLayout/memberLayout.css'
+// import '../memberLayout/memberLayout.css'
+import './sinIn.css'
 
 
 
@@ -45,24 +46,17 @@ import '../memberLayout/memberLayout.css'
     //   return;
     // }
 
-    console.log(
-      `Submitted username: ${username}, password: ${password}, email: ${email}`
-    );
   };
 
   return (
     <div>
       <form className="form-wrap"  onSubmit={handleSubmit} >
-        <input type="email" class="input" placeholder="Email" onChange={handleEmailChange} />
+        <h2>Hi, nice to meet you</h2>
+        <input type="email" className="inputEmail input" placeholder="Email" onChange={handleEmailChange} />
         <input type="text" class="input"   placeholder="Username" onChange={handleUsernameChange} />
         <input type="password" class="input"  placeholder="Password"  onChange={handlePasswordChange}/>
-        
-        {/* <input type="password" class="input" id="user_pass_confirm" autocomplete="off" placeholder="Confirm Password" value={passwordConfirm} onChange={handlePasswordConfirmChange} /> */}
-        <input type="submit" class="button" value="Sign In" />
-        <p>By signing up, you agree to our</p>
-        <p>
-          <a href="#">Terms of service</a>
-        </p>
+        <input type="submit" class="buttonSignIn" value="Sign In" />
+        <p className="BySigningUp">By signing up, you agree to our</p>
       </form>
       <div class="help-text">
       </div>

@@ -16,8 +16,9 @@ function nav(e) {
 
   return (
     <div>
+     
+      <div className="form-wrap"> 
       <h1>Welcome</h1>
-      <div className="form-wrap">
         <div class="tabs">
           <h3 class="tab">
             <a class="tablink active" onClick={(e) => nav(e)}>
@@ -30,10 +31,6 @@ function nav(e) {
             </a>
           </h3>
         </div>
-
-        
-      
-        
       </div>
     </div>
   );

@@ -27,6 +27,7 @@ export default function Login() {
   return (
     <>
       <form className="form-wrap" onSubmit={handleSubmit}>
+        <h2>hi, good to see you!</h2>
         <input
           type="text"
           className="input"
@@ -51,10 +52,10 @@ export default function Login() {
             checked={rememberMe}
             onChange={(event) => setRememberMe(event.target.checked)}
           />
-          <label htmlFor="remember_me">Remember me</label> {/* Fixed label */}
+          <label  htmlFor="remember_me">Remember me</label> {/* Fixed label */}
         </div>
 
-        <input type="submit" className="button" value="Login" />
+        <input type="submit" className="buttonLogin" value="Login" />
         <p>
           <a href="#">Forget your password?</a>
         </p>
