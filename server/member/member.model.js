@@ -1,22 +1,26 @@
 const mongoose = require('mongoose');
 
 const memberSchema = new mongoose.Schema({
-    name: {
+    userName: {
         type: String,
         required: true
     },
-    img: {
+    email: {
         type: String,
         required: true
     },
-    parentId: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'category',
-        default: 0,
+    password: {
+        type: String,
+        required: true
+        
+    },
+    isActive:{
+        type: Boolean,
+        default: true
     }
 })
 
-const memberModel = mongoose.model('users', memberSchema)
+const memberModel = mongoose.model('members', memberSchema)
 
 
 module.exports = memberModel

@@ -55,7 +55,6 @@ const itemsModel = mongoose.model('items',ItemsSchema)
 const insert = async()=>{
     try {
         const data= await itemsModel.create(item)
-        console.log(data);
     } catch (error) {
         console.error(error);
     }

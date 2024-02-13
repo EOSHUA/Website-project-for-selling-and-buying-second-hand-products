@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-// import '../memberLayout/memberLayout.css'
 import './sinIn.css'
+import React, { useState } from "react";
+import {  useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 
 
@@ -8,8 +9,8 @@ import './sinIn.css'
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   // const [formData, setFormData] = useState(
   //   {
@@ -19,8 +20,6 @@ import './sinIn.css'
   //     email: ""
   //   }
   // );
-
-
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -38,25 +37,43 @@ import './sinIn.css'
     setEmail(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    const newUser={
+      userName_:username,
+      password_:password,
+      email_:email
+    }
+    try {
+      
+     const succuss = await axios.post('http://localhost:4545/member/signIn',{
+        newuser:newUser
+      }).then((response) => {console.log(response)}).then(alert("You have successfully registered!")).then(getToLogin);
+      
+      
+    } catch (error) {
+      alert(error.response.data);
+    }
 
-    // if (password !== passwordConfirm) {
-    //   alert("Passwords do not match");
-    //   return;
-    // }
 
   };
+  const getToLogin =()=>{
+    navigate(`/member/login/`);
+  }
 
   return (
     <div>
       <form className="form-wrap"  onSubmit={handleSubmit} >
         <h2>Hi, nice to meet you</h2>
-        <input type="email" className="inputEmail input" placeholder="Email" onChange={handleEmailChange} />
         <input type="text" class="input"   placeholder="Username" onChange={handleUsernameChange} />
+        <input type="email" className="inputEmail input" placeholder="Email" onChange={handleEmailChange} />
         <input type="password" class="input"  placeholder="Password"  onChange={handlePasswordChange}/>
         <input type="submit" class="buttonSignIn" value="Sign In" />
         <p className="BySigningUp">By signing up, you agree to our</p>
+        <p>
+          <span>Do you have an account ? </span>
+      <a onClick={getToLogin}>Click here </a>
+        </p>
       </form>
       <div class="help-text">
       </div>

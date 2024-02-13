@@ -1,28 +1,51 @@
 import React, { useState } from "react";
 import "./login.css";
+import {  useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
-
+  
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const member={
+      userName_:username,
+      password_:password,
+    }
+    try {
+
+        const m=await axios.post('http://localhost:4545/member/login',{
+        member:member
+        }).then((response) => {console.log(response)}).then(goToDeshboard)
+    } catch (err) {
+      console.log("david");
+      alert(err.response.data);
+    }
 
     if (rememberMe) {
       console.log("Remember me is checked");
     }
-
     console.log(`Submitted username: ${username}, password: ${password}`);
   };
+
+  const goToSignin =()=>{
+    navigate(`/member/signin/`);
+  }
+  const goToDeshboard =()=>{
+    navigate(`/member/deshboard/`);
+  }
+
 
   return (
     <>
@@ -58,6 +81,10 @@ export default function Login() {
         <input type="submit" className="buttonLogin" value="Login" />
         <p>
           <a href="#">Forget your password?</a>
+        </p>
+        <p>
+          <span>Don't have an account yet ? </span>
+        <a onClick={goToSignin}>Click here </a>
         </p>
       </form>
       <div className="help-text">

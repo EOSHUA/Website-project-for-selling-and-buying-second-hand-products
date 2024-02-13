@@ -1,7 +1,7 @@
 const guestModel = require('./category.model')
 
 async function create(data) {
-    return await userModel.create(data)
+    return await guestModel.create(data)
 }
 
 async function read(filter = {}) {
@@ -9,7 +9,7 @@ async function read(filter = {}) {
 }
 
 async function readOne(filter = {}) {
-    return await userModel.findOne(filter)
+    return await guestModel.findOne(filter)
 }
 
 async function update(filter, data) {

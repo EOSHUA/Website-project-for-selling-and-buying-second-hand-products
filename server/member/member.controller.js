@@ -1,22 +1,22 @@
-const guestModel = require('./member.model')
+const memberModel = require('./member.model')
 
 async function create(data) {
-    return await userModel.create(data)
+    return await memberModel.create(data)
 }
 
 async function read(filter = {}) {
-    return data = await guestModel.find(filter)
+    return data = await memberModel.find(filter)
 }
 
 async function readOne(filter = {}) {
-    return await userModel.findOne(filter)
+    return await memberModel.findOne(filter)
 }
 
 async function update(filter, data) {
-    return await guestModel.updateOne(filter, data);
+    return await memberModel.updateOne(filter, data);
 }
 async function updateById(id, data) {
-    return await guestModel.updateOne({ _id: id }, data);
+    return await memberModel.updateOne({ _id: id }, data);
 }
 
 async function del(id) {

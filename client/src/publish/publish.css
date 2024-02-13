@@ -1,0 +1,59 @@
+.publish-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: #fff;
+  }
+  
+  .publish-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adjust the spacing between form elements */
+  }
+  
+  .publish-form label {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .publish-form input[type="text"],
+  .publish-form input[type="file"] {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+  }
+  
+  .publish-form input[type="submit"] {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .publish-form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  .category-item {
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    margin-bottom: 10px; /* Space between categories */
+    transition: background-color 0.2s;
+  }
+  
+  .category-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Add more styles here as needed */
+  

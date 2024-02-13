@@ -18,12 +18,28 @@ h2{
     color:#deb887 ;
 }
 .buttonSignIn{
-    background-color: #ffffff;
-    width: 50%;
-    margin-left: 25%;
+    width: 100%; /* Full width of the form */
+  padding: 10px;
+  background-color: #b3afaf;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth background color change */
+
     
 }
 .buttonSignIn:hover{
     cursor: pointer;
     background-color: #deb887;
 }
+
+a {
+    color: #deb887;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }

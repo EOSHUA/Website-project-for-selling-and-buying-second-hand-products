@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import './publish.css'
 
 export default function Publish() {
   const [userData, setUserData] = useState({});
@@ -13,7 +14,6 @@ export default function Publish() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userData);
   };
 
   const getAllTheCategory = (e) => {
@@ -38,9 +38,9 @@ export default function Publish() {
     // }
   };
   return (
-    <div onSubmit={handleSubmit}>
+    <div className="publish-container" onSubmit={handleSubmit}>
       {Object.values(menu).map((cat, e) => {
-        <div id="category" onClick={getAllTheSabCategory(e)}>
+        <div id="category-item" onClick={()=>getAllTheSabCategory(e)}>
           {cat}
         </div>;
       })}
@@ -55,7 +55,7 @@ export default function Publish() {
         </label>
         <br />
 
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit"  className="publish-form" />
       </form>
     </div>
   );
