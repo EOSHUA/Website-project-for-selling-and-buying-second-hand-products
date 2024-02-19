@@ -47,14 +47,12 @@ export default function Publish() {
       <form>
         <br />
         <label>city </label>
-
         <br />
         <label>
           picture
           <input type="file" id="image" onChange={handleChange} />
         </label>
         <br />
-
         <input type="submit" value="Submit"  className="publish-form" />
       </form>
     </div>

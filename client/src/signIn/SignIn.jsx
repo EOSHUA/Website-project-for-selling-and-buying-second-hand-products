@@ -71,7 +71,7 @@ import axios from 'axios';
         <input type="submit" class="buttonSignIn" value="Sign In" />
         <p className="BySigningUp">By signing up, you agree to our</p>
         <p>
-          <span>Do you have an account ? </span>
+          <span className="spanGoToSugnIn">Do you have an account ? </span>
       <a onClick={getToLogin}>Click here </a>
         </p>
       </form>

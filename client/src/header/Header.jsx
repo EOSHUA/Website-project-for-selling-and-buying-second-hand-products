@@ -10,7 +10,7 @@ export default function Header() {
 
 
 const getToLogin =()=>{
-    navigate(`/member/login/`);
+    navigate(`/member/connection`);
   }
   return (
     <>

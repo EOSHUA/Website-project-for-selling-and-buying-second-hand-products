@@ -24,19 +24,14 @@ export default function Login() {
       password_:password,
     }
     try {
-
-        const m=await axios.post('http://localhost:4545/member/login',{
+        const loginMember=await axios.post('http://localhost:4545/member/login',{
         member:member
         }).then((response) => {console.log(response)}).then(goToDeshboard)
     } catch (err) {
-      console.log("david");
+      console.log(err.message);
       alert(err.response.data);
     }
 
-    if (rememberMe) {
-      console.log("Remember me is checked");
-    }
-    console.log(`Submitted username: ${username}, password: ${password}`);
   };
 
   const goToSignin =()=>{
@@ -67,7 +62,7 @@ export default function Login() {
           value={password}
           onChange={handlePasswordChange}
         />
-        <div className="remember_me_warp">
+        {/* <div className="remember_me_warp">
           <input
             type="checkbox"
             className="checkbox"
@@ -75,15 +70,15 @@ export default function Login() {
             checked={rememberMe}
             onChange={(event) => setRememberMe(event.target.checked)}
           />
-          <label  htmlFor="remember_me">Remember me</label> {/* Fixed label */}
-        </div>
+          <label  htmlFor="remember_me">Remember me</label>
+        </div> */}
 
         <input type="submit" className="buttonLogin" value="Login" />
         <p>
-          <a href="#">Forget your password?</a>
+          <a onClick={goToSignin}>Forget your password?</a>
         </p>
         <p>
-          <span>Don't have an account yet ? </span>
+          <span className="spanGoToSugnIn">Don't have an account yet ? </span>
         <a onClick={goToSignin}>Click here </a>
         </p>
       </form>

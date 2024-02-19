@@ -12,7 +12,16 @@ router.get('/', async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
-
+router.get('/getMyAds', async (req, res) => {
+    try {
+        let result = await itemsService.getAllMyAds();
+        console.log(result);
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
 
 
 

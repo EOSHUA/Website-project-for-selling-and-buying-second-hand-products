@@ -38,20 +38,15 @@ async function addMember(data) {
     if (!data?.userName_) throw { code: 400,msg:"username input error", data: "username input error" }
     if (!data?.email_) throw { code: 400,msg:"email input error", data: "email input error" }
     if (!data?.password_) throw { code: 400,msg:"password input error", data: "password input error" }
-   
 
     // if email exist
     let user = await memberController.readOne({ email: data.email_ })
     if (user) throw { code: 450, msg:"email is already used" ,data: "email is already used" }
     
-
     // map to object (by schema)
     let newUserMapped = await handleValidation(data)
-    
-
     let result = await memberController.create(newUserMapped)
     if (result) throw {code:200,msg:"User has successfully registered",data:"User has successfully registered"};
-    
     return result
 }
 

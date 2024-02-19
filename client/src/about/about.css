@@ -1,0 +1,10 @@
+
+.textAbout{
+    max-width: 600px;
+    margin-left: 850px;
+    display: inline-block;
+    direction: rtl;
+    font-family: Arial,sans-serif;
+    text-align: right;
+    font-size: 1.14em;
+}

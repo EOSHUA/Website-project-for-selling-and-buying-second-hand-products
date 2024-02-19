@@ -26,15 +26,7 @@ router.post('/signIn',async (req,res)=>{
     }
 })
 
-router.get('/getMyAds', async (req, res) => {
-    try {
-        let result = await memberService.getAllAds();
-        res.send(result)
-    }
-    catch (err) {
-        res.status(err?.code ?? 400).send(err?.msg)
-    }
-})
+
 
 router.delete('/deleteAd', async (req, res) => {
     try {

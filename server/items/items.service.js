@@ -12,5 +12,14 @@ async function getAllItems() {
         console.log(err);
     }
 }
+async function getAllMyAds(){
+    try {
+                const ads = await itemsController.read({ isActive:true });
+                return ads
+            } catch (err) {
+                console.log(err);
+            }
+        }
 
-module.exports = { getAllItems }
+
+module.exports = { getAllItems,getAllMyAds }
