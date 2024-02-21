@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./login.css";
 import {  useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
+import {memberContext} from "../layout/Layout"
 
 export default function Login() {
+  const {memberConnected,setMemberConnected}=useContext(memberContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -26,7 +28,7 @@ export default function Login() {
     try {
         const loginMember=await axios.post('http://localhost:4545/member/login',{
         member:member
-        }).then((response) => {console.log(response)}).then(goToDeshboard)
+        }).then((response) => {setMemberConnected(response.data[0].userName)}).then(goToDeshboard)
     } catch (err) {
       console.log(err.message);
       alert(err.response.data);
@@ -44,6 +46,7 @@ export default function Login() {
 
   return (
     <>
+   
       <form className="form-wrap" onSubmit={handleSubmit}>
         <h2>hi, good to see you!</h2>
         <input

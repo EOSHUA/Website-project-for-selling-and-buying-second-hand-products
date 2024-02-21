@@ -9,8 +9,6 @@ export default function UserLayout() {
     <div className="userLayout">
       <Content />
       {/* <Routes>
-      
-     
       <Route path="/" element={<Content />}></Route>
       </Routes>
     */}

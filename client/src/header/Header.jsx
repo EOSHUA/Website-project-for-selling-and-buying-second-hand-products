@@ -1,27 +1,54 @@
-import React from "react";
+import { React, useContext , } from "react";
 import logo from "../logo.png";
 import './header.css'
 import login from "./imeges/login.png"
+import home from "./imeges/house-chimney.png"
+import deshboard from "./imeges/menu-dots.png"
 import { useNavigate } from "react-router-dom";
+import { memberContext} from "../layout/Layout"
 
 
 export default function Header() {
   const navigate = useNavigate();
+  const {memberConnected,setMemberConnected}=useContext(memberContext);
 
 
-const getToLogin =()=>{
-    navigate(`/member/connection`);
+const goToHome =()=>{
+  console.log("jpp");
+  navigate(`/guest`);
+}
+const goToDeshboard =()=>{
+  navigate(`/member/deshboard/`);
+}
+
+const goToLogin =(e)=>{
+    if(e.target.innerHTML=="login")
+    {
+      navigate(`/member/connection`)
+    }
+    else {return}
   }
+  
   return (
     <>
       <div className="header">
-        {<img className="imgHeader" src={logo} style={{ opacity: 0.3 }} />}
-          <span className="spanLogin" onClick={getToLogin}>
-            <button className="buttonUserLogin"> <img src={login} width={50} ></img><p>Login</p></button>
-            {/* <button className="PostingAnAd">Posting an ad
-            <svg width="1.5em" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="publish-ad_plusSymbol__xGTbi"><path d="M12 4.75a.75.75 0 01.743.648l.007.102v5.75h5.75a.75.75 0 01.102 1.493l-.102.007h-5.75v5.75a.75.75 0 01-1.493.102l-.007-.102v-5.75H5.5a.75.75 0 01-.102-1.493l.102-.007h5.75V5.5a.75.75 0 01.75-.75z" fill="currentColor"></path></svg>
-            </button> */}
+         {<img className="imgHeader" src={logo} style={{ opacity: 0.3 }} />}
+
+          <span className="spanLogin" onClick={(e)=>goToLogin(e)}>
+
+            <button className="buttonHeader">
+               <img src={login} width={50} ></img>
+               <p>{!memberConnected?"login":"Hello "+ memberConnected}</p>
+               </button>
+              {memberConnected && <button className="buttonHeader "> 
+              {
+              window.location.href.includes("member") ?<div className="buttonHeader" onClick={goToHome}>
+                <img src={home} width={50} ></img><p>Home</p></div>:
+                <div className="buttonHeader" onClick={goToDeshboard}><img src={deshboard} width={50} >
+                </img></div>}
+            </button>}
           </span>
+
       </div>
     </>
     )

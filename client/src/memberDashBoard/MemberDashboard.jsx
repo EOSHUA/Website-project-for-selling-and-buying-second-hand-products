@@ -1,10 +1,12 @@
-import React from "react";
+import { React, useContext } from "react";
 import './memberDashBoard.css'
-import UserItems from "../userItems/UserItems";
-import Publish from "../publish/Publish";
-import Details from "../details/Details";
 import { useNavigate } from "react-router-dom";
+import { memberContext} from "../layout/Layout"
+
+
+
 export default function MemberDashboard() {
+  const {memberConnected,setMemberConnected}=useContext(memberContext);
  const navigate = useNavigate()
 
 
@@ -23,6 +25,7 @@ export default function MemberDashboard() {
  const logOut =()=>{
   let text = "Are you sure you want to go out?";
   if (window.confirm(text)==true) {
+    setMemberConnected("")
     navigate(`/guest/`)
   }
  }

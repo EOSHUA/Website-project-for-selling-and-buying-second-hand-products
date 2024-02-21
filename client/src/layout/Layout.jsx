@@ -1,4 +1,5 @@
 import React from "react";
+import { useState,useContext,createContext } from "react";
 import Logo from "../logo.png";
 import Header from "../header/Header";
 import MemberLayout from "../memberLayout/MemberLayout";
@@ -6,7 +7,6 @@ import UserLayout from '../userLayout/UserLayout'
 import SubCategories from "../subCategories/SubCategories";
 import { BrowserRouter ,Route,Routes} from "react-router-dom";
 import './layout.css'
-import Content from "../content/Content";
 import Login from "../logIn/LogIn";
 import SignIn from "../signIn/SignIn";
 import MemberDeshBoard from '../memberDashBoard/MemberDashboard'
@@ -14,11 +14,19 @@ import Publish from "../publish/Publish";
 import Details from "../details/Details";
 import UserItems from "../userItems/UserItems";
 import About from "../about/About";
+import ItemInfo from "../itemInfo/ItemInfo";
+
+export const memberContext = React.createContext();
 
 export default function Layout() {
+
+  const [memberConnected,setMemberConnected]=useState("")
+
+
+
   return (
     <div className="layout">
-     
+      <memberContext.Provider value={{ memberConnected, setMemberConnected }}>
       <BrowserRouter>
        <Header />
        <Routes>
@@ -33,8 +41,10 @@ export default function Layout() {
           <Route path="/member/deshboard/details" element={ <Details />}></Route>
           <Route path="/member/deshboard/about" element={ <About />}></Route>
           <Route path="/member/deshboard/useritems" element={ <UserItems />}></Route>
+          <Route path="/guest/iteminfo" element={ <ItemInfo />}></Route>
       </Routes>    
       </BrowserRouter>
+      </memberContext.Provider>
     </div>
   );
 }
