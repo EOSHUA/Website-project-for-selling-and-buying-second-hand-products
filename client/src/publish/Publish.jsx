@@ -40,8 +40,7 @@ export default function UploadImage() {
 
   function uploadMultipleImages(images) {
     setLoading(true);
-    axios
-      .post("http://localhost:5000/uploadMultipleImages", { images })
+    axios.post("http://localhost:5000/uploadMultipleImages", { images })
       .then((res) => {
         const data = res.data.slice(",");
         console.log(data);
@@ -99,35 +98,59 @@ export default function UploadImage() {
 
   return (
     <div >
-      <div>
-        <h2 >
-          Upload Photo
-        </h2>
-      </div>
-      <div>
-        {url && (
-          <div>
+      <div className="publish">
+          <div className="product" >
+            <span className="headerPublish">
+              <p className="numIcon" >1</p>
+              <h3 className="title">The product I want to sell</h3>
+           </span>
+             
+              <input type="text" />
             
-            <a href={url} target="_blank" rel="noopener noreferrer">
-              {url}
-            </a>
           </div>
-        )}
-      </div>
-      <div>
-        {loading ? (
-          <div >
-            <img src={assets} />{" "}
+          <div className="ProductInformation">
+            <span className="headerPublish">
+              <p className="numIcon" >2</p>
+              <h3 className="title">Product information</h3>
+            </span>
           </div>
-        ) : (
-          <UploadInput />
-        )}
-      </div>
-      <br />
-      <br />
-      <br />
+          
+          <div className="AddingPictures">
+            <span className="headerPublish">
+              <p className="numIcon" >3</p>
+              <h3 className="title">Adding pictures</h3>
+            </span>
+            <br />
+                <div >
+                    {url && (
+                      <a href={url} target="_blank" rel="noopener noreferrer">
+                        {url}
+                      </a>
+                    )}
+                </div>
+                <div>
+                {loading ? (
+                  <div >
+                    <img src={assets} />{" "}
+                  </div>
+                ) : (
+                  <UploadInput />
+                )}
+                </div>
+                  <br /><br /><br />
+                  <img src={url} height="250px" width="400px"></img>
+            </div>
 
-      <img src={url} height="100px" width="200px"></img>
+            <div className="ContactInformation">
+            <span className="headerPublish">
+              <p className="numIcon" >4</p>
+              <h3 className="title">Contact information</h3>
+            </span>
+            <p>Just before the ad is published, we would like to get to know you</p>
+
+          </div>
+      </div>
+      <input type="submit"></input>
     </div>
   );
 }

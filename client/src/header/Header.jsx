@@ -1,4 +1,4 @@
-import { React, useContext , } from "react";
+import { React, useContext, useState , } from "react";
 import logo from "../logo.png";
 import './header.css'
 import login from "./imeges/login.png"
@@ -11,7 +11,7 @@ import { memberContext} from "../layout/Layout"
 export default function Header() {
   const navigate = useNavigate();
   const {memberConnected,setMemberConnected}=useContext(memberContext);
-
+  const [buttonLogin, setButtonLogin] =useState(true);
 
 const goToHome =()=>{
   console.log("jpp");
@@ -22,32 +22,41 @@ const goToDeshboard =()=>{
 }
 
 const goToLogin =(e)=>{
-    if(e.target.innerHTML=="login")
+    if(e.target.innerHTML!="login")
     {
-      navigate(`/member/connection`)
+      navigate(`/member/deshboard/details/`);
     }
-    else {return}
+    else {
+    navigate(`/member/connection`)
   }
+  }
+  const logOut =()=>{
+    let text = "Are you sure you want to go out?";
+    if (window.confirm(text)==true) {
+      setMemberConnected("")
+      navigate(`/guest/`)
+    }
+   }
   
   return (
     <>
       <div className="header">
          {<img className="imgHeader" src={logo} style={{ opacity: 0.3 }} />}
 
-          <span className="spanLogin" onClick={(e)=>goToLogin(e)}>
-
-            <button className="buttonHeader">
+          <div className="spanLogin" >
+            <button className="buttonHeader" >
                <img src={login} width={50} ></img>
-               <p>{!memberConnected?"login":"Hello "+ memberConnected}</p>
-               </button>
+               <p onClick={(e)=>goToLogin(e)}>{!memberConnected?"login":"Hello "+ memberConnected}</p>
+            </button>
+
               {memberConnected && <button className="buttonHeader "> 
               {
               window.location.href.includes("member") ?<div className="buttonHeader" onClick={goToHome}>
-                <img src={home} width={50} ></img><p>Home</p></div>:
+                <img src={home} width={50} ></img></div>:
                 <div className="buttonHeader" onClick={goToDeshboard}><img src={deshboard} width={50} >
                 </img></div>}
             </button>}
-          </span>
+          </div>
 
       </div>
     </>

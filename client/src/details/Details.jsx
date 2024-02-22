@@ -1,19 +1,23 @@
-import React from "react";
+import { React, useContext , } from "react";
+import { memberContext} from "../layout/Layout"
 
 
 export default function Details() {
+  const {memberConnected,setMemberConnected}=useContext(memberContext);
+
   
 
 
   
   return (
   <>
+
   
-        <div>
-<h3>detauls</h3>
+  <h3>details</h3>
+  <p>Hello {memberConnected}</p>
 
 
-        </div>
+      
   </>
   )
 }

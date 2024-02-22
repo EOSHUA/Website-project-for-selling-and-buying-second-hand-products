@@ -39,3 +39,42 @@
 .read-the-docs {
   color: #888;
 }
+.publish{
+  margin-left: 30em;
+  gap: 30px;
+ 
+}
+.product ,.ProductInformation,.AddingPictures,.ContactInformation{
+  max-width: 850px;
+  height: 650px;
+  margin-top: 30px;
+  padding: 0.5em 2em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.headerPublish{
+   display:flex;
+}
+.numIcon{
+    display: flex;
+    flex-direction: column;
+    height: 24px;
+    width: 24px;
+    line-height: 20px;
+    margin-right: 1.3%;
+    margin-top: 1px;
+    border-radius: 50px;
+    color: #deb887;
+    text-align: center;
+    border: 2px solid #deb887;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+}
+.title{
+   color: #000;
+    font-size: 24px;
+    padding-right: 5.5%;
+    margin-bottom: 0;
+    font-weight: 400;
+}
