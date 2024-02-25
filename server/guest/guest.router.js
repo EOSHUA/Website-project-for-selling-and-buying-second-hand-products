@@ -51,6 +51,26 @@ router.get(`/:id`, async (req, res) => {
 })
 
 
+router.post(`/publish/getCat/`, async (req, res) => {
+    try {
+        let result = await guestService.getCategoryForPublish(req.body);
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
+router.post(`/publish/getCat/sub`, async (req, res) => {
+    try {
+        let result = await guestService.getSubCategoryForPublish(req.body);
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
+
+
 
 
 

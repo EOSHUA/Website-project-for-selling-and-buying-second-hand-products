@@ -24,6 +24,42 @@ async function getSubCategory(parentId) {
         console.log(err);
     }
 }
+async function getCategoryForPublish(e) {
+    try {
+        console.log(e);
+        const data = await guestController.read({
+            $and: [
+              { category: { $regex: e.cat, $options: "i" } },
+              { parentId: { $exists: false } },
+              {isActive:true}
+            ]
+          });
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+async function getSubCategoryForPublish(e) {
+    try {
+        console.log(e);
+        const parentId =await getCategoryForPublish(e)
+        console.log(parentId[0]._id);
+        const data = await getSubCategory(parentId[0]._id);
+        // const data = await guestController.read({
+        //     $and: [
+        //       { sub: { $regex: e.cat, $options: "i" } },
+        //       { parentId: { $exists: false } },
+        //       {isActive:true}
+        //     ]
+        //   });
+        console.log(data);
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
 
 
 
@@ -94,4 +130,4 @@ async function getSubCategory(parentId) {
     
     
     
-    module.exports = { getAllCategoris , getSubCategory }
+    module.exports = { getAllCategoris , getSubCategory,getCategoryForPublish ,getSubCategoryForPublish}

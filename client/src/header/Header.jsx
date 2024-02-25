@@ -22,6 +22,7 @@ const goToDeshboard =()=>{
 }
 
 const goToLogin =(e)=>{
+  console.log(e.target.innerHTML);
     if(e.target.innerHTML!="login")
     {
       navigate(`/member/deshboard/details/`);

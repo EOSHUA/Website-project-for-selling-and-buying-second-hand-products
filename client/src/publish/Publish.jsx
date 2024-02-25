@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import assets from "../assets/assets.gif";
 import axios from "axios";
 import "./publish.css"
@@ -7,6 +7,14 @@ import "./publish.css"
 export default function UploadImage() {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState([]);
+  const [allCat, setAllCat] = useState([]);
+  const [allSubCat, setAllSubCat] = useState([]);
+  const [add, setAdd] = useState({
+    category:"",
+    subCategory:"",
+    description:""
+  });
+
 
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
@@ -95,25 +103,74 @@ export default function UploadImage() {
       </div>
     );
   }
+  const getAllCat=(e)=>{
+    setAdd({...add,category:e.target.value})
+    try {
+     e.target.value.length>0?
+     axios.post('http://localhost:4545/guest/publish/getCat/',{
+     cat:e.target.value
+      }).then((response) => {setAllCat(response.data)}):setAllCat([])
+  } catch (e) {
+      console.log(e);
+    }
+  }
+  const getAllSubCat=(e)=>{
+    setAdd({...add,subCategory:e.target.value})
+    try {
+     e.target.value.length>0?
+     axios.post('http://localhost:4545/guest/publish/getCat/sub',{
+      cat:add.category,
+      sub:e.target.value
+      }).then((response) => {setAllSubCat(response.data)}):setAllSubCat([])
+  } catch (e) {
+      console.log(e);
+    }
+  }
 
   return (
     <div >
       <div className="publish">
-          <div className="product" >
+      
+          <div className="product"  >
+            <br/>
+            <br/>
             <span className="headerPublish">
               <p className="numIcon" >1</p>
-              <h3 className="title">The product I want to sell</h3>
+              <h3 className="title">The product I want to give</h3>
            </span>
-             
-              <input type="text" />
-            
+             <br/>
+             <br/>
+             <br/>
+             <h2>category</h2>
+
+              <input type="text" onChange={getAllCat} value={add.category} ></input>
+               {allCat.map((cat, index) => (
+            <p onClick={()=>setAdd({...add,category:cat.category}) & setAllCat([])}
+
+            key={index}>{cat.category}</p> // Ensure your category objects have a 'category' field
+          ))}
+          <br/>
+          <br/>
+          <br/>
+          <h2>subCategory</h2>
+             <input type="text" onChange={getAllSubCat}  value={add.subCategory}></input>
+               {allSubCat.map((sub, index) => (
+            <p onClick={()=>setAdd({...add,subCategory:sub.category}) & setAllSubCat([])}
+            key={index}>{sub.category}</p> // Ensure your category objects have a 'category' field
+          ))}
+           <br/>
+          <br/>
+          <br/>
+          <h2>description</h2>
+              <input type="t" onChange={(e)=>setAdd({...add,description:e.target.value})} value={add.description} >
+
+              </input>
+          <br/>
+          <br/>
+          <br/>
+            {console.log(add)}
           </div>
-          <div className="ProductInformation">
-            <span className="headerPublish">
-              <p className="numIcon" >2</p>
-              <h3 className="title">Product information</h3>
-            </span>
-          </div>
+       
           
           <div className="AddingPictures">
             <span className="headerPublish">
