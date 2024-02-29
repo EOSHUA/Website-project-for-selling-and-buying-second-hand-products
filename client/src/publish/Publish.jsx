@@ -3,19 +3,26 @@ import { useState,useEffect } from "react";
 import assets from "../assets/assets.gif";
 import axios from "axios";
 import "./publish.css"
+import search from "./Photos/search.png";
 
 export default function UploadImage() {
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState([]);
   const [allCat, setAllCat] = useState([]);
   const [allSubCat, setAllSubCat] = useState([]);
+  const [charCount, setCharCount] = useState(0);
+  const [showList, setShowList] = useState(false);
+
+  
   const [add, setAdd] = useState({
     category:"",
     subCategory:"",
     description:""
   });
 
-
+  useEffect(() => {
+    setCharCount(add.description.length);
+  }, []);
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -35,11 +42,11 @@ export default function UploadImage() {
     setLoading(true);
     try {
       axios
-        .post("http://localhost:5000/uploadImage", { image: base64 })
+        .post("http://localhost:4545/upload/uploadImage", { image: base64 })
         .then((res) => {
           setUrl(res.data);
           alert("Image uploaded Succesfully");
-        })
+        }).then((response) => {console.log(response)})
         .then(() => setLoading(false));
     } catch (error) {
       console.log(error);
@@ -48,7 +55,7 @@ export default function UploadImage() {
 
   function uploadMultipleImages(images) {
     setLoading(true);
-    axios.post("http://localhost:5000/uploadMultipleImages", { images })
+    axios.post("http://localhost:4545/apload/uploadImage", { images })
       .then((res) => {
         const data = res.data.slice(",");
         console.log(data);
@@ -61,8 +68,6 @@ export default function UploadImage() {
 
   const uploadImage = async (event) => {
     const files = event.target.files;
-    console.log(files.length);
-
     if (files.length === 1) {
       const base64 = await convertBase64(files[0]);
       uploadSingleImage(base64);
@@ -103,17 +108,31 @@ export default function UploadImage() {
       </div>
     );
   }
-  const getAllCat=(e)=>{
-    setAdd({...add,category:e.target.value})
-    try {
-     e.target.value.length>0?
-     axios.post('http://localhost:4545/guest/publish/getCat/',{
-     cat:e.target.value
-      }).then((response) => {setAllCat(response.data)}):setAllCat([])
-  } catch (e) {
-      console.log(e);
+  const getAllCat = (e) => {
+    const inputValue = e.target.value; 
+    setAdd({ ...add, category: inputValue });
+    if (!inputValue) {
+      setAllCat([]);
+      setShowList(false);
+      return;
     }
-  }
+    axios.post('http://localhost:4545/guest/publish/getCat/', { cat: inputValue })
+      .then((response) => {
+        if (response.data && response.data.length > 0) {
+          setAllCat(response.data);
+          setShowList(true); 
+        } else {
+          setAllCat([]);
+          setShowList(false); 
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setAllCat([]);
+        setShowList(false);
+      });
+  };
+  
   const getAllSubCat=(e)=>{
     setAdd({...add,subCategory:e.target.value})
     try {
@@ -121,60 +140,90 @@ export default function UploadImage() {
      axios.post('http://localhost:4545/guest/publish/getCat/sub',{
       cat:add.category,
       sub:e.target.value
-      }).then((response) => {setAllSubCat(response.data)}):setAllSubCat([])
+      }).then((response) => {setAllSubCat(response.data)}):setAllSubCat([]); setShowList(true).then(()=>{setShowList(true)})
   } catch (e) {
       console.log(e);
     }
   }
 
+  const onSubmit=()=>{
+
+  }
+  const handleDescriptionChange = (e) => {
+    const newValue = e.target.value;
+    setAdd({ ...add, description: newValue });
+    setCharCount(newValue.length);
+  };
+
   return (
     <div >
       <div className="publish">
-      
-          <div className="product"  >
-            <br/>
-            <br/>
+        <div className="product">
+
+            <br/><br/>
+
             <span className="headerPublish">
               <p className="numIcon" >1</p>
               <h3 className="title">The product I want to give</h3>
            </span>
-             <br/>
-             <br/>
-             <br/>
+
+             <br/><br/><br/>
+
              <h2>category</h2>
+            <div className="inputWithIcon">
+              <input
+                className="inputPublish"
+                type="text"
+                onChange={getAllCat}
+                value={add.category}
+              />
+              <img src={search} alt="Search" width={20} />
+             </div >
+             <div className={`listAllCat ${showList ? 'show' : ''}`}>
+                {allCat.map((cat, index) => (
+                <p onClick={()=>setAdd({...add,category:cat.category}) & setAllCat([]) & setShowList(false)}
+               
+                key={index}>{cat.category}</p> 
+                ))} 
+                {console.log(showList)}
+            </div>
 
-              <input type="text" onChange={getAllCat} value={add.category} ></input>
-               {allCat.map((cat, index) => (
-            <p onClick={()=>setAdd({...add,category:cat.category}) & setAllCat([])}
+          <br/><br/><br/>
 
-            key={index}>{cat.category}</p> // Ensure your category objects have a 'category' field
-          ))}
-          <br/>
-          <br/>
-          <br/>
           <h2>subCategory</h2>
-             <input type="text" onChange={getAllSubCat}  value={add.subCategory}></input>
-               {allSubCat.map((sub, index) => (
-            <p onClick={()=>setAdd({...add,subCategory:sub.category}) & setAllSubCat([])}
-            key={index}>{sub.category}</p> // Ensure your category objects have a 'category' field
-          ))}
-           <br/>
-          <br/>
-          <br/>
-          <h2>description</h2>
-              <input type="t" onChange={(e)=>setAdd({...add,description:e.target.value})} value={add.description} >
-
-              </input>
-          <br/>
-          <br/>
-          <br/>
-            {console.log(add)}
+          <div className="inputWithIcon">
+             <input   className="inputPublish" type="text" onChange={getAllSubCat}  value={add.subCategory}>
+             </input>
+             <img src={search} alt="Search" width={20} />
           </div>
-       
-          
-          <div className="AddingPictures">
+          <div className={`listAllCat ${showList ? 'show' : ''}`}>
+               {allSubCat.map((sub, index) => (
+            <p onClick={()=>setAdd({...add,subCategory:sub.category}) & setAllSubCat([])  & setShowList(false)}
+            key={index}>{sub.category}</p> 
+          ))}
+          </div>
+
+          <br/><br/><br/>
+
+          <h2>description</h2>
+          <p className="LimitedDescription ">Limited to 200 characters only</p>
+          <p className="maxLengthChar">{charCount}/400</p>
+          <div className="inputWithIcon">
+            <textarea  className="inputPublish inputDescription" type="text"
+              onChange={(e)=>handleDescriptionChange(e)} 
+              value={add.description} placeholder="Free Text"
+              maxLength={400}>
+            </textarea>
+          </div>
+          <p className="LimitedDescription ">Note! There is no need to add a phone number as part of the description</p>
+
+          <br/><br/><br/>
+
+        </div>
+
+        <div className="AddingPictures">
             <span className="headerPublish">
-              <p className="numIcon" >3</p>
+              <p className="numIcon" >2</p>
               <h3 className="title">Adding pictures</h3>
             </span>
             <br />
@@ -199,15 +248,31 @@ export default function UploadImage() {
             </div>
 
             <div className="ContactInformation">
-            <span className="headerPublish">
-              <p className="numIcon" >4</p>
-              <h3 className="title">Contact information</h3>
-            </span>
-            <p>Just before the ad is published, we would like to get to know you</p>
+              <span className="headerPublish">
+                <p className="numIcon" >3</p>
+                <h3 className="title">Contact information</h3>
+              </span>
+              <form onSubmit={onSubmit}>
 
+                <br/><br/><br/>
+            
+              <input className="inputPublish inputContactInformation" type="text" placeholder="Name"/>
+
+              <br/><br/><br/>
+              
+              <input  className="inputPublish inputContactInformation" type="text"  placeholder="City"/>
+
+              <br/> <br/> <br/>
+
+              <input  className="inputPublish inputContactInformation" type="number"  placeholder="Phone" />
+            
+              <br/><br/><br/>
+
+                </form>
           </div>
       </div>
-      <input type="submit"></input>
+   <input type="submit" value="Published" class="submitBtn"/>
+
     </div>
   );
 }

@@ -14,9 +14,6 @@ const guestService = require('./guest.service')
 //     }
 // })
 
-
-
-
 router.get('/', async (req, res) => {
     try {
         let result = await guestService.getAllCategoris();
@@ -38,6 +35,7 @@ router.post(`/subCategory/:cat`, async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
+
 router.get(`/:id`, async (req, res) => {
     try {
         
@@ -49,7 +47,6 @@ router.get(`/:id`, async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
-
 
 router.post(`/publish/getCat/`, async (req, res) => {
     try {
@@ -69,10 +66,5 @@ router.post(`/publish/getCat/sub`, async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
-
-
-
-
-
 
 module.exports = router

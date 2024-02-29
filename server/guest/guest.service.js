@@ -14,19 +14,17 @@ async function getAllCategoris() {
     }
 }
 
-
 async function getSubCategory(parentId) {
     try {
         const data = await guestController.read({parentId: new ObjectId(parentId) });
-        console.log(data);
         return data;
     } catch (err) {
         console.log(err);
     }
 }
+
 async function getCategoryForPublish(e) {
     try {
-        console.log(e);
         const data = await guestController.read({
             $and: [
               { category: { $regex: e.cat, $options: "i" } },
@@ -34,7 +32,6 @@ async function getCategoryForPublish(e) {
               {isActive:true}
             ]
           });
-        console.log(data);
         return data;
     } catch (err) {
         console.log(err);
@@ -43,9 +40,7 @@ async function getCategoryForPublish(e) {
 
 async function getSubCategoryForPublish(e) {
     try {
-        console.log(e);
         const parentId =await getCategoryForPublish(e)
-        console.log(parentId[0]._id);
         const data = await getSubCategory(parentId[0]._id);
         // const data = await guestController.read({
         //     $and: [
@@ -54,7 +49,6 @@ async function getSubCategoryForPublish(e) {
         //       {isActive:true}
         //     ]
         //   });
-        console.log(data);
         return data;
     } catch (err) {
         console.log(err);

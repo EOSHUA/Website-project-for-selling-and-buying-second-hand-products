@@ -47,16 +47,57 @@ h2{
   gap: 30px;
  
 }
-.product ,.ProductInformation,.AddingPictures,.ContactInformation{
+.product{
   max-width: 850px;
-  height: 650px;
+  margin-top: 30px;
+  padding: 0.5em 2em;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+ .ProductInformation,.AddingPictures,.ContactInformation{
+  max-width: 850px;
   margin-top: 30px;
   padding: 0.5em 2em;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .headerPublish{
-   display:flex;
+  display:flex;
+}
+.inputPublish{
+  padding: 10px;
+  border: 1px solid #deb887;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 20px rgba(0, 0, 0, 0.1);
+}
+.inputWithIcon {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.inputWithIcon input {
+  width: 100%;
+  padding-right: 30px; 
+}
+.inputWithIcon img {
+  position: absolute;
+  right: 10px;
+}
+.inputDescription{
+  width: 100%;
+  height: 100px;
+  resize: none; 
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.LimitedDescription{
+  text-align: justify;
+   position: absolute;
+ 
+}
+.maxLengthChar{
+ 
+text-align: end;
 }
 .numIcon{
     display: flex;
@@ -81,3 +122,105 @@ h2{
     margin-bottom: 0;
     font-weight: 400;
 }
+.listAllCat {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 300px; /* Adjust the width as needed */
+  max-height: 200px; /* Adjust the height as needed */
+  overflow-y: auto; /* Adds scrollbar if content overflows */
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  margin-top: 5px; /* Space between input box and list */
+  padding: 10px 0; /* Padding on top and bottom */
+  border: 1px solid #ccc; /* Subtle border */
+}
+.listAllCat.show {
+  display: block; /* Only show when this class is added */
+}
+
+.listAllCat p {
+  font-size: 15px;
+  padding: 10px 15px;
+  margin: 0;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.listAllCat p:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+/* Custom scrollbar for the dropdown */
+.listAllCat::-webkit-scrollbar {
+  width: 5px;
+}
+
+.listAllCat::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.listAllCat::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.listAllCat::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.ContactInformation{
+ 
+}
+.inputContactInformation{
+  width: 60%;
+  height: 50px;
+  resize: none; 
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+.submitBtn {
+  background-image: linear-gradient(to right, #deb887, #ff9e54);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  width: 200px; 
+  height: 50px; 
+  display: block;
+  margin: 20px auto; 
+  text-align: center;
+}
+
+.submitBtn:hover, .submitBtn:focus {
+  background-image: linear-gradient(to right, #ff9e54,#deb887);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Add a focus effect for accessibility */
+.submitBtn:focus {
+  outline: 2px solid #ff7e5f;
+  outline-offset: 2px;
+}
+
+
+
+
