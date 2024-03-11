@@ -1,11 +1,14 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import assets from "../assets/assets.gif";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import "./publish.css"
 import search from "./Photos/search.png";
+import UploadImage from "./UploadImage";
+import {memberContext} from "../layout/Layout"
 
-export default function UploadImage() {
+export default function Publish() {
+  const {memberConnected,setMemberConnected}=useContext(memberContext);
   const [loading, setLoading] = useState(false);
   const [url, setUrl] = useState([]);
   const [allCat, setAllCat] = useState([]);
@@ -17,97 +20,20 @@ export default function UploadImage() {
   const [add, setAdd] = useState({
     category:"",
     subCategory:"",
-    description:""
+    description:"",
+    userId:"",
+    city:"",
+    phone:"`",
+    name:"",
   });
 
   useEffect(() => {
     setCharCount(add.description.length);
   }, []);
-  const convertBase64 = (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+ 
+  
 
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  };
-
-  function uploadSingleImage(base64) {
-    setLoading(true);
-    try {
-      axios
-        .post("http://localhost:4545/upload/uploadImage", { image: base64 })
-        .then((res) => {
-          setUrl(res.data);
-          alert("Image uploaded Succesfully");
-        }).then((response) => {console.log(response)})
-        .then(() => setLoading(false));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  function uploadMultipleImages(images) {
-    setLoading(true);
-    axios.post("http://localhost:4545/apload/uploadImage", { images })
-      .then((res) => {
-        const data = res.data.slice(",");
-        console.log(data);
-        console.log(url);
-        alert("Image uploaded Succesfully");
-      })
-      .then(() => setLoading(false))
-      .catch(console.log);
-  }
-
-  const uploadImage = async (event) => {
-    const files = event.target.files;
-    if (files.length === 1) {
-      const base64 = await convertBase64(files[0]);
-      uploadSingleImage(base64);
-      return;
-    }
-
-    const base64s = [];
-    for (var i = 0; i < files.length; i++) {
-      var base = await convertBase64(files[i]);
-      base64s.push(base);
-    }
-    uploadMultipleImages(base64s);
-  };
-
-  function UploadInput() {
-    return (
-      <div className="flex items-center justify-center w-full">
-        <label
-          htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
-        >
-          <input
-            onChange={uploadImage}
-            id="dropzone-file"
-            type="file"
-            className="hidden"
-            multiple
-          />
-          <div className="flex flex-col items-center justify-center pt-5 pb-6">
-            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-             
-            </p>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              SVG, PNG, JPG or GIF (MAX. 800x400px)
-            </p>
-          </div>
-        </label>
-      </div>
-    );
-  }
+  console.log(add);
   const getAllCat = (e) => {
     const inputValue = e.target.value; 
     setAdd({ ...add, category: inputValue });
@@ -132,7 +58,7 @@ export default function UploadImage() {
         setShowList(false);
       });
   };
-  
+ 
   const getAllSubCat=(e)=>{
     setAdd({...add,subCategory:e.target.value})
     try {
@@ -147,6 +73,27 @@ export default function UploadImage() {
   }
 
   const onSubmit=()=>{
+    setAdd({...add,userId:memberConnected})
+   
+    
+    try {
+      axios.post('http://localhost:4545/guest/getIds',{
+        subCategoryName:add.subCategory,
+      }).then((response)=>{
+        console.log(response.data[0].parentId)
+        console.log(response.data[0]) 
+        setAdd({...add,
+        subCategory:response.data[0]._id,
+        category:response.data[0].parentId
+      })});
+      
+    axios.post('http://localhost:4545/items/creatItem',{
+      item:add
+    }).then((response)=>{console.log(response)});
+      
+    } catch (error) {
+      
+    }
 
   }
   const handleDescriptionChange = (e) => {
@@ -154,7 +101,7 @@ export default function UploadImage() {
     setAdd({ ...add, description: newValue });
     setCharCount(newValue.length);
   };
-
+  console.log(add);
   return (
     <div >
       <div className="publish">
@@ -185,7 +132,7 @@ export default function UploadImage() {
                
                 key={index}>{cat.category}</p> 
                 ))} 
-                {console.log(showList)}
+                
             </div>
 
           <br/><br/><br/>
@@ -228,23 +175,10 @@ export default function UploadImage() {
             </span>
             <br />
                 <div >
-                    {url && (
-                      <a href={url} target="_blank" rel="noopener noreferrer">
-                        {url}
-                      </a>
-                    )}
+                <UploadImage Add={add} setadd={setAdd} />
                 </div>
-                <div>
-                {loading ? (
-                  <div >
-                    <img src={assets} />{" "}
-                  </div>
-                ) : (
-                  <UploadInput />
-                )}
-                </div>
-                  <br /><br /><br />
-                  <img src={url} height="250px" width="400px"></img>
+
+                  
             </div>
 
             <div className="ContactInformation">
@@ -252,26 +186,26 @@ export default function UploadImage() {
                 <p className="numIcon" >3</p>
                 <h3 className="title">Contact information</h3>
               </span>
-              <form onSubmit={onSubmit}>
+              <form >
 
                 <br/><br/><br/>
             
-              <input className="inputPublish inputContactInformation" type="text" placeholder="Name"/>
+              <input className="inputPublish inputContactInformation" type="text" placeholder="Name" onChange={(e)=>setAdd({...add,name:e.target.value})}/>
 
               <br/><br/><br/>
               
-              <input  className="inputPublish inputContactInformation" type="text"  placeholder="City"/>
+              <input  className="inputPublish inputContactInformation" type="text"  placeholder="City" onChange={(e)=>setAdd({...add,city:e.target.value})}/>
 
               <br/> <br/> <br/>
 
-              <input  className="inputPublish inputContactInformation" type="number"  placeholder="Phone" />
+              <input  className="inputPublish inputContactInformation" type="number"  placeholder="Phone" onChange={(e)=>setAdd({...add,phone:e.target.value})} />
             
               <br/><br/><br/>
 
                 </form>
           </div>
       </div>
-   <input type="submit" value="Published" class="submitBtn"/>
+   <input type="submit" value="Published" class="submitBtn" onClick={onSubmit}/>
 
     </div>
   );

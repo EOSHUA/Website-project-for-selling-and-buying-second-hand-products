@@ -35,6 +35,17 @@ router.post(`/subCategory/:cat`, async (req, res) => {
         res.status(err?.code ?? 400).send(err?.msg)
     }
 })
+router.post(`/getIds`, async (req, res) => {
+    try {
+        
+        let result = await guestService.findIds(req.body);
+       
+        res.send(result)
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send(err?.msg)
+    }
+})
 
 router.get(`/:id`, async (req, res) => {
     try {

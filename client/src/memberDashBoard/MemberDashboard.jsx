@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import { React, useContext,useEffect } from "react";
 import './memberDashBoard.css'
 import { useNavigate } from "react-router-dom";
 import { memberContext} from "../layout/Layout"
@@ -7,7 +7,13 @@ import { memberContext} from "../layout/Layout"
 
 export default function MemberDashboard() {
   const {memberConnected,setMemberConnected}=useContext(memberContext);
- const navigate = useNavigate()
+ const navigate = useNavigate();
+
+
+ useEffect(() => {
+  navigate(`useritems/`)
+}, []);
+
 
 
  const goToPublish =()=>{
@@ -33,6 +39,7 @@ export default function MemberDashboard() {
     <>
     <div >
   <nav>
+ 
   <div className="itemMenu" onClick={goToPublish}>publish  ad</div>
   <div className="itemMenu" onClick={goToUserItems}>my ads</div>
   <div className="itemMenu" onClick={goToDetails}>details</div>

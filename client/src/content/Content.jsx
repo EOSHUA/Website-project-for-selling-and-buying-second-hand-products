@@ -38,7 +38,7 @@ export default function Content() {
           
       </Routes>
       <Items />
-      <ItemInfo />
+      
       
 
       {/* </ItemsContext.Provider> */}

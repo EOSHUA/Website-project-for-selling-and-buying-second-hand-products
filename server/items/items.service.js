@@ -20,6 +20,17 @@ async function getAllMyAds(){
                 console.log(err);
             }
         }
+async function creatItem(item){
+    try {
+                const ads = await itemsController.create(item);
+                return ads
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        
 
 
-module.exports = { getAllItems,getAllMyAds }
+
+
+module.exports = { getAllItems,getAllMyAds ,creatItem}

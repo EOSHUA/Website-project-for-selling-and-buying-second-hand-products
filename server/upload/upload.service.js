@@ -1,18 +1,17 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 
-const cloud_name_ = "dsxzewstf";
+const cloud_name = 'dsxzewstf';
 
-const api_key_ = 656724592177456;
+const api_key = 656724592177456;
 
-const api_secret_ = "hlHhSCZUhuxkd77gpPvcBtVfbbc";
+const api_secret='hlHhSCZUhuxkd77gpPvcBtVfbbc' ;
 
 
 cloudinary.config({
-  cloud_name:cloud_name_,
-  api_key:api_key_ ,
-  api_secret:api_secret_ ,
+  cloud_name: cloud_name,
+  api_key: api_key,
+  api_secret: api_secret,
 });
-
 
 const opts = {
   overwrite: true,
@@ -21,12 +20,9 @@ const opts = {
 };
 
 function uploadImage(image) {
-    
   return new Promise((resolve, reject) => {
     cloudinary.uploader.upload(image, opts, (error, result) => {
-        console.log(result);
       if (result && result.secure_url) {
-        console.log(result.secure_url);
         resolve(result.secure_url);
       } else {
         console.log(error.message + " failed to upload");

@@ -55,6 +55,15 @@ async function getSubCategoryForPublish(e) {
     }
 }
 
+async function findIds(e) {
+    try {
+   const data=await guestController.read({category: e.subCategoryName});
+   return data;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
 
 
 // async function addNewUser(data) {
@@ -124,4 +133,4 @@ async function getSubCategoryForPublish(e) {
     
     
     
-    module.exports = { getAllCategoris , getSubCategory,getCategoryForPublish ,getSubCategoryForPublish}
+    module.exports = { getAllCategoris , getSubCategory,getCategoryForPublish ,getSubCategoryForPublish,findIds}

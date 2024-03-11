@@ -5,16 +5,19 @@ const express = require('express'),
 
 
 
-router.get('/uploadImage', async (req, res) => {
+router.post('/uploadImage', async (req, res) => {
+
     try {
-        await upload.uploadImage(req.body.image);
+        
+        const url=await upload.uploadImage(req.body.image);
+        res.send(url)
     }
     catch (err) {
         console.log("catch");
     }
 })
 
-console.log("try");
+
 
 
 

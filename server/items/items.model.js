@@ -13,6 +13,10 @@ const ItemsSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         required: true
     },
+    name: {
+        type: String,
+       required: true
+    },
     city: {
        type: String,
        required: true
@@ -40,26 +44,29 @@ const ItemsSchema = new mongoose.Schema({
         required: true
     }
 })
-const item={
-    idCategory:'65b64252f4847f7f2148075d',
-    idSubCategory:'65b664adf4874f7f24180762',
-    userId:'65b646adf4874f7f21480862',
-    city:'bitar-eilit',
-    description:'bla bla bla bla bla bla bla bla bla bla bla',
-    productStatus:"good-"
 
-}
 const itemsModel = mongoose.model('items',ItemsSchema)
 
+// const item={
+//     idCategory:'65b64252f4847f7f2148075d',
+//     idSubCategory:'65b664adf4874f7f24180762',
+//     userId:'65b646adf4874f7f21480862',
+//     city:'bitar-eilit',
+//     description:'bla bla bla bla bla bla bla bla bla bla bla',
+//     productStatus:"good-",
+//     image:"images/",
+//     name:"nachmn"
 
-const insert = async()=>{
-    try {
-        const data= await itemsModel.create(item)
-    } catch (error) {
-        console.error(error);
-    }
-}
 
-insert()
+// }
+// const insert = async()=>{
+//     try {
+//         const data= await itemsModel.create(item)
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
+
+// insert()
 
 module.exports = itemsModel

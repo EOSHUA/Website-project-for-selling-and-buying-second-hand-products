@@ -215,7 +215,7 @@ input[type="number"] {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Optional: Add a focus effect for accessibility */
+
 .submitBtn:focus {
   outline: 2px solid #ff7e5f;
   outline-offset: 2px;

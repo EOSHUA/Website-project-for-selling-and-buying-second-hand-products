@@ -7,7 +7,8 @@ import { useParams } from "react-router-dom";
 
 export default function ItemList({ Items }) {
   const [items, setItems] = useState({ data: [] });
-  const params=useParams()
+  // const params=useParams()
+  
   const urlCat=window.location.href.split('/')[6]
   const urlSub=window.location.href.split('/')[6]
   
@@ -19,18 +20,17 @@ export default function ItemList({ Items }) {
     } catch (e) {
       console.log(e);
     }
-  }, [urlCat]);
+  }, []);
 
   
   return (
     <>
-    <div className="itemList">
-    {items.data && items.data.map((item) =>(
-                  <div key={item.image} >
-                      <Item items={item} key={item.id} />
-                  </div>
-                  
-                ))}
+    <div className="itemList"> 
+       {items.data && items.data.map((item) =>(
+          <div key={item.image} >
+          <Item items={item} key={item.id} />
+     </div>        
+       ))}
     </div>
     
     </>

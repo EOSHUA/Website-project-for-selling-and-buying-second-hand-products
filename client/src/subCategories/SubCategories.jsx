@@ -19,6 +19,7 @@ const params=useParams()
   }
  },[])
 const showItems =() => {
+ 
   // navigate(`items`);
 }
 
@@ -30,13 +31,13 @@ const showItems =() => {
       <h2>What would you like to buy? </h2>
       <div className="categories">
        {
-currentItems.map((e) => (
-  <div key={e._id} onClick={() => showItems(e)}>
-    <img className="imgCategory" src={e.image} alt={e.category} />
-    <div className="categoryName">{e.category}</div>
-  </div>
-))
-}
+        currentItems.map((e) => (
+          <div key={e._id} onClick={(e) => showItems(e)}>
+            <img className="imgCategory" src={e.image} alt={e.category} />
+            <div className="categoryName">{e.category}</div>
+          </div>
+          ))
+        }
 
       </div>
 

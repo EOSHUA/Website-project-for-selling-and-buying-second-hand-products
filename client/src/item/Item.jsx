@@ -20,6 +20,7 @@ export default function Item({items}) {
     <div className='item' onClick={navToItemInfo}>
         <img className="itemImgCategory" src={items.image}></img>
         <div className="itemCategoryName">{items.category}</div>
+        <div>{items.city}</div>
     </div>
     </>
   )
