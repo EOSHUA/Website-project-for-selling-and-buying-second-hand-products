@@ -3,6 +3,7 @@ import "./login.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { memberContext } from "../layout/Layout";
+import home from "./imeges/home.png"
 
 export default function Login() {
   const { memberConnected, setMemberConnected } = useContext(memberContext);
@@ -63,9 +64,14 @@ export default function Login() {
   const goToDeshboard = () => {
     navigate(`/member/deshboard/`);
   };
-
+  const goToHome=()=>{
+    navigate(`/guest/`)
+  }
   return (
     <>
+     <div className="goBack" onClick={goToHome}>
+     <img src={home} width={50} ></img>
+     </div>
       <form className="form-wrap" onSubmit={handleSubmit}>
         <h2>hi, good to see you!</h2>
         <input

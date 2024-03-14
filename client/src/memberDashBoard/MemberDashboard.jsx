@@ -31,8 +31,12 @@ export default function MemberDashboard() {
  const logOut =()=>{
   let text = "Are you sure you want to go out?";
   if (window.confirm(text)==true) {
-    setMemberConnected({})
-    localStorage.removeItem("currentUser")
+    setMemberConnected({userName:""})
+    const temp ={userName:"user not logged in"}
+    // localStorage.removeItem("currentUser")
+     localStorage.setItem(
+      "currentUser",
+      JSON.stringify(temp))
     navigate(`/guest/`)
   }
  }

@@ -1,6 +1,7 @@
 import { React, useContext, useState , useEffect} from "react";
 import logo from "../logo.png";
 import './header.css'
+
 import login from "./imeges/login.png"
 import home from "./imeges/house-chimney.png"
 import deshboard from "./imeges/menu-dots.png"
@@ -62,11 +63,8 @@ export default function Header() {
                { localStorage.getItem("currentUser")==undefined || localStorage.getItem("currentUser").length<1 ? "login" :
                memberConnected.userName.length> 0 ? `Hello ${memberConnected.userName}`:"login"}</p>
             </button>
-            {/* <button className="buttonHeader" >
-               <p onClick={(e)=>logOut(e)}>
-                {memberConnected.userName==""?"" : "Exit"}</p>
-            </button> */}
-              {memberConnected && <button className="buttonHeader "> 
+          
+              {memberConnected.userName && <button className="buttonHeader "> 
               {
               window.location.href.includes("member") ?<div className="buttonHeader" onClick={goToHome}>
                 <img src={home} width={50} ></img></div>:

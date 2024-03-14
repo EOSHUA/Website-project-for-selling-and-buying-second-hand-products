@@ -2,6 +2,8 @@ import './sinIn.css'
 import React, { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import axios from 'axios';
+import home from "./imeges/home.png"
+
 
 
 
@@ -60,9 +62,15 @@ import axios from 'axios';
   const getToLogin =()=>{
     navigate(`/member/login/`);
   }
+  const goToHome=()=>{
+    navigate(`/guest/`)
+  }
 
   return (
     <div>
+       <div className="goBack" onClick={goToHome}>
+       <img src={home} width={50} ></img>
+     </div>
       <form className="form-wrap"  onSubmit={handleSubmit} >
         <h2>Hi, nice to meet you</h2>
         <input type="text" class="input"   placeholder="Username" onChange={handleUsernameChange} />

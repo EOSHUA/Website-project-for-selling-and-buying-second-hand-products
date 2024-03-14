@@ -3,6 +3,9 @@
   flex-direction: column;
   justify-content: center;
 }
+.header_{
+  color: #deb887;
+}
 .tab
 {
 padding: 50px;
@@ -10,4 +13,24 @@ padding: 50px;
 * {
   margin: 0;
   padding: 0;
+}
+.goBack {
+  position: absolute;
+  right: 20px;
+  top: 12em; 
+  padding: 10px 20px;
+  background-color: #deb887;
+  color: #fff;
+  margin-right: 3.7em;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px; 
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.goBack:hover {
+  background-color: #d9ab77; 
+  transform: translateY(-2px);
 }

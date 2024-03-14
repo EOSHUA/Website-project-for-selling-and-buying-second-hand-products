@@ -28,10 +28,10 @@
   background-color: #deb887;
   color: #fff; 
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   transition: background-color 0.3s, transform 0.2s; 
 }
 .buttonHeader:hover {
-  background-color: #c69c6d;
+  background-color: #d9ab77;
   transform: translateY(-2px); 
 }
