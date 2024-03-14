@@ -20,7 +20,14 @@ export const memberContext = React.createContext();
 
 export default function Layout() {
 
-  const [memberConnected,setMemberConnected]=useState("")
+const [memberConnected,setMemberConnected]=useState(
+  {
+    userName:"",
+    email:"",
+    passwords:"",
+    userId:""
+  }
+)
 
 
 
@@ -36,7 +43,7 @@ export default function Layout() {
           <Route path="/guest/*" element={<UserLayout />}></Route>
           <Route path="/member/login" element={<Login/>} />
           <Route path="/member/signin" element={<SignIn />} />
-          <Route path="/member/connection" element={ <MemberLayout />}></Route>
+          <Route path="/member/connection/" element={ <MemberLayout />}></Route>
           <Route path="/member/deshboard/publish" element={ <Publish />}></Route>
           <Route path="/member/deshboard/details" element={ <Details />}></Route>
           <Route path="/member/deshboard/about" element={ <About />}></Route>

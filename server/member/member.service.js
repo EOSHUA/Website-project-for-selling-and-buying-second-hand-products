@@ -59,5 +59,14 @@ async function handleValidation(reqBody) {
         password: reqBody.password_
     }
 }
+async function deleteMember(e) {
+   
+    const data = await memberController.del({ userName: e.userName });
+    
+    if (data.length<1) throw { code: 404,msg:"user not found", data: "user not found" }
+    return data
 
-    module.exports = {addMember,getMember}
+
+}
+
+    module.exports = {addMember,getMember,deleteMember}

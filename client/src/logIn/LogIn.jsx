@@ -1,11 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./login.css";
-import {  useNavigate } from "react-router-dom";
-import axios from 'axios';
-import {memberContext} from "../layout/Layout"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { memberContext } from "../layout/Layout";
 
 export default function Login() {
-  const {memberConnected,setMemberConnected}=useContext(memberContext);
+  const { memberConnected, setMemberConnected } = useContext(memberContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -14,39 +14,58 @@ export default function Login() {
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
   };
-  
+
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const member={
-      userName_:username,
-      password_:password,
-    }
-    try {
-        const loginMember=await axios.post('http://localhost:4545/member/login',{
-        member:member
-        }).then((response) => {setMemberConnected(response.data[0].userName)}).then(goToDeshboard)
-    } catch (err) {
-      console.log(err.message);
-      alert(err.response.data);
-    }
+    const member = {
+      userName_: username,
+      password_: password,
+    };
 
+    try {
+        const response = await axios.post("http://localhost:4545/member/login", {
+          member,
+        }).then((response) => {
+        if (response.data && response.data.length > 0) {
+            setMemberConnected({
+            userName: response.data[0].userName,
+            email: response.data[0].email,
+            password: response.data[0].password,
+            userId: response.data[0]._id,
+            });
+            goToDeshboard();
+        } else {
+            throw new Error("Received an empty data array from the server");
+        }})
+     } catch (err) {
+        if (err.response) {
+            console.error(
+            "Server responded with an error:",
+            err.response.status,
+            err.response.data
+            );
+        alert(err.response.data.message);
+        } else if (err.request) {
+        console.error("No response received:", err.request);
+        } else {
+        console.error("Error setting up the request:", err.message);
+        }
+    }
   };
 
-  const goToSignin =()=>{
+  const goToSignin = () => {
     navigate(`/member/signin/`);
-  }
-  const goToDeshboard =()=>{
+  };
+  const goToDeshboard = () => {
     navigate(`/member/deshboard/`);
-  }
-
+  };
 
   return (
     <>
-   
       <form className="form-wrap" onSubmit={handleSubmit}>
         <h2>hi, good to see you!</h2>
         <input
@@ -82,11 +101,10 @@ export default function Login() {
         </p>
         <p>
           <span className="spanGoToSugnIn">Don't have an account yet ? </span>
-        <a onClick={goToSignin}>Click here </a>
+          <a onClick={goToSignin}>Click here </a>
         </p>
       </form>
-      <div className="help-text">
-      </div>
+      <div className="help-text"></div>
     </>
   );
 }

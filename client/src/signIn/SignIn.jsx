@@ -48,7 +48,7 @@ import axios from 'axios';
       
      const succuss = await axios.post('http://localhost:4545/member/signIn',{
         newuser:newUser
-      }).then((response) => {console.log(response)}).then(alert("You have successfully registered!")).then(getToLogin);
+      }).then(alert("You have successfully registered!")).then(getToLogin);
       
       
     } catch (error) {

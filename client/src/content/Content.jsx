@@ -22,21 +22,15 @@ export default function Content() {
             <Route
               path="/subcategories/:catName/:id"
               element={
-                <SubCategories
-                  
-                />
+                <SubCategories/>
               }
             ></Route>
             <Route
               path="/"
               element={
-                <Categories
-                
-                />
+              <Categories/>
               }
-            ></Route>
-          
-      </Routes>
+            ></Route></Routes>
       <Items />
       
       

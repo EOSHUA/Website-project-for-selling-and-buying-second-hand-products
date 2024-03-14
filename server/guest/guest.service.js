@@ -57,6 +57,7 @@ async function getSubCategoryForPublish(e) {
 
 async function findIds(e) {
     try {
+        console.log();
    const data=await guestController.read({category: e.subCategoryName});
    return data;
     } catch (err) {

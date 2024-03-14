@@ -1,4 +1,4 @@
-import { React, useContext, useState , } from "react";
+import { React, useContext, useState , useEffect} from "react";
 import logo from "../logo.png";
 import './header.css'
 import login from "./imeges/login.png"
@@ -13,24 +13,35 @@ export default function Header() {
   const {memberConnected,setMemberConnected}=useContext(memberContext);
   const [buttonLogin, setButtonLogin] =useState(true);
 
-const goToHome =()=>{
-  console.log("jpp");
-  navigate(`/guest`);
-}
-const goToDeshboard =()=>{
-  navigate(`/member/deshboard/`);
-}
-
-const goToLogin =(e)=>{
-  console.log(e.target.innerHTML);
-    if(e.target.innerHTML!="login")
-    {
-      navigate(`/member/deshboard/details/`);
+  useEffect(() => {
+   const addToLocal= async()=>{
+    await localStorage.setItem(
+      "currentUser",
+      JSON.stringify(memberConnected))
     }
-    else {
-    navigate(`/member/connection`)
+    addToLocal()
+  }, [memberConnected]);
+  
+
+  const goToHome =()=>{
+    console.log("jpp");
+    navigate(`/guest`);
+  }
+  const goToDeshboard =()=>{
+    navigate(`/member/deshboard/`);
+  }
+
+  const goToLogin =async(e) =>{
+    console.log(e.target.innerHTML);
+    if(e.target.innerHTML!=="login")
+    {
+      await navigate(`/member/deshboard/details/`);
+    }
+    if(e.target.innerHTML==="login") {
+    await navigate(`/member/connection`)
   }
   }
+
   const logOut =()=>{
     let text = "Are you sure you want to go out?";
     if (window.confirm(text)==true) {
@@ -43,13 +54,18 @@ const goToLogin =(e)=>{
     <>
       <div className="header">
          {<img className="imgHeader" src={logo} style={{ opacity: 0.3 }} />}
-
+         
           <div className="spanLogin" >
             <button className="buttonHeader" >
                <img src={login} width={50} ></img>
-               <p onClick={(e)=>goToLogin(e)}>{!memberConnected?"login":"Hello "+ memberConnected}</p>
+               <p onClick={(e)=>goToLogin(e)}>
+               { localStorage.getItem("currentUser")==undefined || localStorage.getItem("currentUser").length<1 ? "login" :
+               memberConnected.userName.length> 0 ? `Hello ${memberConnected.userName}`:"login"}</p>
             </button>
-
+            {/* <button className="buttonHeader" >
+               <p onClick={(e)=>logOut(e)}>
+                {memberConnected.userName==""?"" : "Exit"}</p>
+            </button> */}
               {memberConnected && <button className="buttonHeader "> 
               {
               window.location.href.includes("member") ?<div className="buttonHeader" onClick={goToHome}>

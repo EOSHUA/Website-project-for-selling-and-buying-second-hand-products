@@ -31,22 +31,22 @@ export default function MemberDashboard() {
  const logOut =()=>{
   let text = "Are you sure you want to go out?";
   if (window.confirm(text)==true) {
-    setMemberConnected("")
+    setMemberConnected({})
+    localStorage.removeItem("currentUser")
     navigate(`/guest/`)
   }
  }
   return (
     <>
     <div >
-  <nav>
- 
-  <div className="itemMenu" onClick={goToPublish}>publish  ad</div>
-  <div className="itemMenu" onClick={goToUserItems}>my ads</div>
-  <div className="itemMenu" onClick={goToDetails}>details</div>
-  <div className="itemMenu" onClick={goToAbout}>about</div>
-  <div className="itemMenu" onClick={logOut}>log out</div>
-  <div class="animation start-home"></div>
-</nav>
+      <nav>
+        <div className="itemMenu" onClick={goToPublish}>publish  ad</div>
+        <div className="itemMenu" onClick={goToUserItems}>my ads</div>
+        <div className="itemMenu" onClick={goToDetails}>details</div>
+        <div className="itemMenu" onClick={goToAbout}>about</div>
+        <div className="itemMenu" onClick={logOut}>log out</div>
+        <div class="animation start-home"></div>
+      </nav>
 <br/>
 
 

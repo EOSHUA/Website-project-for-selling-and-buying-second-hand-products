@@ -25,7 +25,6 @@ export default function UploadImage(props) {
   function uploadSingleImage(base64) {
     setLoading(true);
     try {
-        
       axios
         .post("http://localhost:4545/upload/uploadImage", { image: base64 })
         .then((res) => {
@@ -49,7 +48,6 @@ export default function UploadImage(props) {
         const data = res.data.slice(",");
         console.log(data);
         console.log(url);
-        
       })
       .then(() => setLoading(false))
       .catch(console.log);
@@ -57,12 +55,10 @@ export default function UploadImage(props) {
 
   const uploadImage = async (event) => {
     const files = event.target.files;
-   
 
     if (files.length === 1) {
-      
       const base64 = await convertBase64(files[0]);
-      
+
       uploadSingleImage(base64);
       return;
     }
@@ -84,6 +80,8 @@ export default function UploadImage(props) {
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             <svg
+              width="200px"
+              height="200px"
               aria-hidden="true"
               className="w-10 h-10 mb-3 text-gray-400"
               fill="none"
@@ -94,7 +92,7 @@ export default function UploadImage(props) {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth="2"
+                strokeWidth="0.6"
                 d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
               ></path>
             </svg>
@@ -125,7 +123,7 @@ export default function UploadImage(props) {
           Upload Photo
         </h2>
       </div>
-   
+
       <div>
         {loading ? (
           <div className="flex items-center justify-center">
@@ -139,7 +137,7 @@ export default function UploadImage(props) {
       <br />
       <br />
 
-      {url && <img src={url} height="100px" width="200px"></img>}
+      {url && <img src={url} height="300px" width="400px"></img>}
     </div>
   );
 }

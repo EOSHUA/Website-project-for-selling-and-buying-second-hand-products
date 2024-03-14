@@ -10,7 +10,6 @@ export default function MemberLayout() {
   const navigate = useNavigate();
 
 function nav(e) {
- console.log(e.target.innerHTML);
  navigate('/member/' + e.target.innerHTML);
 }
 

@@ -16,7 +16,7 @@ async function update(filter, data) {
     return await memberModel.updateOne(filter, data);
 }
 async function updateById(id, data) {
-    return await memberModel.updateOne({ _id: id }, data);
+    return await memberModel.updateOne({ userName: id }, data);
 }
 
 async function del(id) {

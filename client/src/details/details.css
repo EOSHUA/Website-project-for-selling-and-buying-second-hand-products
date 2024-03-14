@@ -1,0 +1,98 @@
+.details-container {
+    max-width: 600px;
+    margin: 2em auto;
+    padding: 2em;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .details-title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+  }
+  
+  .details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .details-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .details-field label {
+    flex-basis: 20%;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .details-field input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .edit-btn {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #deb887;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .edit-btn:hover {
+    background-color: #333
+  }
+  
+  /* Styling for the save button */
+  .save-btn {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .save-btn:hover {
+    background-color: #218838;
+  }
+  
+ 
+  .details-field input:disabled {
+    background-color: #e9ecef;
+    color: #495057;
+    border-color: #ced4da;
+  }
+  
+
+  .details-form {
+    margin-top: 1em;
+  }
+  .delete-account-btn {
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .delete-account-btn:hover {    
+    background-color: #d32f2f; 
+  }
