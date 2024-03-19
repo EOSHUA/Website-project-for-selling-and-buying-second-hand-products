@@ -12,17 +12,27 @@ async function getAllItems() {
         console.log(err);
     }
 }
-async function getAllMyAds(){
+
+async function deleteOneItem(itemId){
+   
+return rmv = await itemsController.deleteItem(itemId)
+}
+
+async function getAllMyAds(memberConnected){
     try {
-                const ads = await itemsController.read({ isActive:true });
-                return ads
+        
+                const adds = await itemsController.read({ isActive:true ,userId:new ObjectId(memberConnected)});
+                
+                return adds
             } catch (err) {
                 console.log(err);
             }
         }
 async function creatItem(item){
     try {
+        console.log("creatItem");
                 const ads = await itemsController.create(item);
+                
                 return ads
             } catch (err) {
                 console.log(err);
@@ -33,4 +43,4 @@ async function creatItem(item){
 
 
 
-module.exports = { getAllItems,getAllMyAds ,creatItem}
+module.exports = { getAllItems,getAllMyAds ,creatItem,deleteOneItem}

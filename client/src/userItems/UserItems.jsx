@@ -6,29 +6,37 @@ import { memberContext } from "../layout/Layout";
 export default function UserItems() {
   const { memberConnected, setMemberConnected } = useContext(memberContext);
   const [myItems, setMyItems] = useState([]);
+  const [activityAds, setActivityAds] = useState("");
 
 
 
 
 
-  
   useEffect(() => {
-    axios.get(`http://localhost:4545/items/getMyAds`, { memberConnected:memberConnected.userName})
+    axios.post(`http://localhost:4545/items/getMyAds`, { memberConnected:memberConnected.
+    userId
+    })
       .then((response) => {
         setMyItems(response.data);   
       })
       .catch((error) => {
         console.error("There was an error fetching the ads:", error);
       });
-  }, [setMyItems]);
+  }, [activityAds]);
 
-  const handleEdit = (itemId) => {
-    
-  };
 
-  const handleDelete = (itemId) => {
-    
+  const handleDelete = (item) => {
+    axios.delete(`http://localhost:4545/items/delete`, { 
+      data: { itemId: item }
+    })
+    .then((response) => {
+      setActivityAds("");   
+    })
+    .catch(error => {
+      console.error(error.response?.data?.message ?? "An error occurred");
+    });
   };
+  
 
   return (
     <div className="user-items-container">
@@ -37,10 +45,10 @@ export default function UserItems() {
         {myItems.length > 0 ? (
           myItems.map((item, index) => (
             <div key={index} className="item">
-              <h3>{item.title}</h3> 
+              <img src={item.image} width="200px" height="100px"/> 
               <p>{item.description}</p>
-              <button onClick={() => handleEdit(item.id)} className="edit-btn">Edit</button>
-              <button onClick={() => handleDelete(item.id)} className="delete-btn">Delete</button>
+              <p>{item.productStatus}</p>
+              <button onClick={() => handleDelete(item._id)} className="delete-btn">Delete</button>
             </div>
           ))
         ) : (

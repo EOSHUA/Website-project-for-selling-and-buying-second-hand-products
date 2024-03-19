@@ -61,6 +61,7 @@ router.get(`/:id`, async (req, res) => {
 
 router.post(`/publish/getCat/`, async (req, res) => {
     try {
+        console.log(req.body);
         let result = await guestService.getCategoryForPublish(req.body);
         res.send(result)
     }

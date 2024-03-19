@@ -33,7 +33,7 @@ export default function Header() {
   }
 
   const goToLogin =async(e) =>{
-    console.log(e.target.innerHTML);
+    
     if(e.target.innerHTML!=="login")
     {
       await navigate(`/member/deshboard/details/`);

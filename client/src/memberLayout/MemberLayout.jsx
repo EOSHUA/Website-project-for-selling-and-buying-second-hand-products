@@ -11,6 +11,7 @@ export default function MemberLayout() {
   const navigate = useNavigate();
 
 function nav(e) {
+  console.log("klj");
  navigate('/member/' + e.target.innerHTML);
 }
 const goToHome=()=>{

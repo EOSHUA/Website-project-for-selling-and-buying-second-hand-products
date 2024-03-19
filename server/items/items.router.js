@@ -30,9 +30,11 @@ router.get('/', async (req, res) => {
 //       .catch((err) => res.status(500).send(err));
 //   });
 
-router.get('/getMyAds', async (req, res) => {
+router.post('/getMyAds', async (req, res) => {
     try {
-        let result = await itemsService.getAllMyAds();
+        
+       
+        let result = await itemsService.getAllMyAds(req.body.memberConnected);
         res.send(result)
     }
     catch (err) {
@@ -49,7 +51,21 @@ router.post('/creatItem', async (req, res) => {
     catch (err) {
         res.status(err?.code ?? 400).send(err?.msg)
     }
+    
 })
+router.delete('/delete', async (req, res) => {
+    try {
+        
+        let result = await itemsService.deleteOneItem(req.body.itemId );
+        res.send(result)
+      
+   ;
+    }
+    catch (err) {
+        res.status(err?.code ?? 400).send({message: err?.msg});
+    }
+});
+
 
 
 

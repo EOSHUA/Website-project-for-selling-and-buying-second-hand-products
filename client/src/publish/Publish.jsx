@@ -24,7 +24,8 @@ export default function Publish() {
     city: "",
     phone: "`",
     name: "",
-    userName:""
+    userName:"",
+    productStatus:""
   });
 
   useEffect(() => {
@@ -79,34 +80,53 @@ export default function Publish() {
     }
   };
 
-  const onSubmit = () => {
-    setAdd({ ...add,userId: memberConnected.userId,
-      userName:memberConnected.userName  });
+const preparationToSend= async() =>{
+  
+   await axios
+    .post("http://localhost:4545/guest/getIds", {
+      subCategoryName: add.subCategory,
+    })
+    .then((response) => {
+       console.log(response);
+       setSubmitValues({
+        ...add,
+        subCategory: response.data[0]._id,
+        category: response.data[0].parentId,
+        userId: memberConnected.userId,
+        userName:memberConnected.userName
+      });
+      
+    });
 
-    try {
-      axios
-        .post("http://localhost:4545/guest/getIds", {
-          subCategoryName: add.subCategory,
-        })
-        .then((response) => {
-          console.log(response);
-          console.log(response.data[0]);
-          setAdd({
-            ...add,
-            subCategory: response.data[0]._id,
-            category: response.data[0].parentId,
-          });
-        });
+}
+  const [submitValues,setSubmitValues]=useState();
 
-      axios
-        .post("http://localhost:4545/items/creatItem", {
-          item: add,
-        })
-        .then((response) => {
-          console.log(response);
-        });
-    } catch (error) {}
-  };
+useEffect(()=>{
+   axios.post("http://localhost:4545/items/creatItem", {
+    item: submitValues,
+   })},[submitValues])
+ 
+
+  const onSubmit = async () =>  {
+    console.log(memberConnected);
+     
+   
+      
+      preparationToSend()
+      
+  //     axios
+  //      .post("http://localhost:4545/items/creatItem", {
+  //        item: add,
+  //       })})
+  //      .then((response) => {
+  //        console.log(response);
+  //      });
+  //  } catch (error) {
+  //   console.log(error);
+  //  }
+ };
+      console.log(add);
+
   const handleDescriptionChange = (e) => {
     const newValue = e.target.value;
     setAdd({ ...add, description: newValue });
@@ -183,6 +203,27 @@ export default function Publish() {
             ))}
           </div>
 
+          <br />
+          <br />
+          <br />
+
+          <h2>product status</h2>
+         
+          <div className="inputWithIcon">
+            <select
+              className="inputPublish inputDescription"
+              type="text"
+              required='true'
+             
+              onClick={(e) => setAdd({ ...add, productStatus: e.target.value })}
+            >
+            <option value="">cush product status</option>
+            <option value="prefect">New</option>
+            <option value="good">Good</option>
+            <option value="used">Used</option>
+            <option value="defective">Defective</option>
+            </select>
+          </div>
           <br />
           <br />
           <br />

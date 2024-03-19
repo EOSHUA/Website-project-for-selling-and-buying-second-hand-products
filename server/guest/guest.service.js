@@ -5,6 +5,7 @@ const { ObjectId } = require('mongodb');
 
 
 async function getAllCategoris() {
+
     try {
         const data = await guestController.read({ parentId: { $exists: !true } });
         return data
@@ -16,6 +17,7 @@ async function getAllCategoris() {
 
 async function getSubCategory(parentId) {
     try {
+
         const data = await guestController.read({parentId: new ObjectId(parentId) });
         return data;
     } catch (err) {
@@ -32,6 +34,7 @@ async function getCategoryForPublish(e) {
               {isActive:true}
             ]
           });
+          console.log(data);
         return data;
     } catch (err) {
         console.log(err);
