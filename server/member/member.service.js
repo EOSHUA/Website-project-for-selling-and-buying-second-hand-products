@@ -61,7 +61,7 @@ async function handleValidation(reqBody) {
 }
 async function deleteMember(e) {
    
-    const data = await memberController.deleteItem({ userName: e.userName });
+    const data = await memberController.deleteMember(e);
     
     if (data.length<1) throw { code: 404,msg:"user not found", data: "user not found" }
     return data

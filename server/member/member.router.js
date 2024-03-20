@@ -68,9 +68,9 @@ router.post(`/updateDetailsMemberDetails`, async (req, res) => {
     }
 })
 
-router.delete('/deleteMember', async (req, res) => {
+router.post('/deleteMember', async (req, res) => {
     try {
-        let result = await memberService.deleteMember(req.body);
+        let result = await memberService.deleteMember(req.body.userId);
         res.send(result)
     }
     catch (err) {

@@ -23,10 +23,13 @@ export default function Items({ category, subCategory }) {
   return (
     <>
     <div className="items">
+
+      
      
       
       <ItemList Items={Items} />
-      <Search />
+      <Search/>
+      
     </div>
     </>
   );

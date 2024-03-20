@@ -19,10 +19,11 @@ async function updateById(id, data) {
     return await memberModel.updateOne({ userName: id }, data);
 }
 
-async function del(id) {
-    return await updateById(id, { isActive: false })
+async function deleteMember(userid) {
+    console.log(userid);
+    return await memberModel.updateOne({_id:userid}, { isActive: false })
 }
 
-module.exports = { create, read, readOne, update, updateById, del }
+module.exports = { create, read, readOne, update, updateById, deleteMember }
 
 

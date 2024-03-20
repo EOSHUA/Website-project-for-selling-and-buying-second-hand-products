@@ -25,7 +25,7 @@ export default function ItemList({ Items }) {
   
   return (
     <>
-    <div className="itemList"> 
+    <div className="itemList">
        {items.data && items.data.map((item) =>(
           <div key={item.image} >
           <Item items={item} key={item.id} />

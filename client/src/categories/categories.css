@@ -1,52 +1,86 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Handjet:wght@200;300;400&family=M+PLUS+Rounded+1c&family=Montserrat:ital,wght@0,100;1,200&display=swap');
 
-*{
+* {
     padding: 0;
-    margin:0 ;
-}
-.ContainerCategories{
-   margin-top: 5em;
-   background-color:  #ffffff;
-   width: 75%;
-   margin-left: 8%;
-   height: 350px; 
-   flex-wrap: wrap;
-   box-sizing:content-box;
-   padding: 20px;
-   box-shadow: 13px 14px 8px 2px rgba(0,0,0,.1);
+    margin: 0;
+    box-sizing: border-box; /* Ensuring padding and border don't add to the element's dimensions */
 }
 
- /* width: 75%;
-    height: 1500px;
-    margin-left: 8%;
-    display: flex;
-   
+.ContainerCategories {
+    margin-top: 5%;
+    background-color: #ffffff;
+    width: 90%; /* Adjusted for responsiveness */
+    max-width: 1800px; /* Added to limit the maximum width on larger screens */
+    margin-left: auto;
+    margin-right: auto; /* Centering the container horizontally */
+    height: auto; /* Adjusted to allow content to determine height */
     padding: 20px;
-    margin-top: 10em; */
-.categories{
-   display: flex;
-   justify-content: space-around;
-   padding-top: 3em;
-}
-h2{
-    text-align: justify;
-font-family: 'Montserrat', sans-serif;
-}
-.imgCategory{
-  margin-top: 1%;
-  background-color: #deb887;
-  width: 10em;
-  height: 10em;
-  border-radius: 100%;
-   cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Modified shadow for better visibility */
 }
 
-.imgCategory:hover{
-box-sizing: border-box;
- border: 3px solid  #deb887;
+.categories {
+    display: flex;
+    flex-wrap: wrap; /* Allowing categories to wrap to the next line on smaller screens */
+    justify-content: space-around;
+    padding-top: 3em;
 }
-.categoryName{
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  cursor: pointer;
+
+h2 {
+    text-align: justify;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.imgCategory {
+    margin-top: 2%; /* Adjusted for better spacing */
+    background-color: #deb887;
+    width: 200px; /* Adjusted size for better responsiveness */
+    height: 200px; /* Adjusted size for better responsiveness */
+    border-radius: 50%; /* Adjusted to a percentage value for better responsiveness */
+    cursor: pointer;
+    object-fit: cover; /* Ensuring the image covers the entire container */
+}
+
+.imgCategory:hover {
+    border: 3px solid #deb887;
+}
+
+.categoryName {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .ContainerCategories {
+        width: 95%; /* Adjusted width for smaller screens */
+    }
+
+    .categories {
+        padding-top: 2em; /* Adjusted padding for smaller screens */
+    }
+
+    .imgCategory {
+        margin-top: 3%; /* Adjusted margin for better spacing on smaller screens */
+        width: 80px; /* Adjusted size for smaller screens */
+        height: 80px; /* Adjusted size for smaller screens */
+    }
+}
+@media screen and (max-width: 480px) {
+   .ContainerCategories {
+       padding: 10px;
+   }
+
+   .categories {
+       padding-top: 1.5em;
+   }
+
+   .imgCategory {
+       margin-top: 5%;
+       width: 60px;
+       height: 60px;
+   }
+
+   h2 {
+       font-size: 18px;
+   }
 }

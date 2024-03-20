@@ -100,11 +100,18 @@ const preparationToSend= async() =>{
 
 }
   const [submitValues,setSubmitValues]=useState();
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
 useEffect(()=>{
+  if (!isInitialRender) {
    axios.post("http://localhost:4545/items/creatItem", {
     item: submitValues,
-   })},[submitValues])
+   })}
+   else{
+     setIsInitialRender(false);
+   }
+
+  },[submitValues])
  
 
   const onSubmit = async () =>  {

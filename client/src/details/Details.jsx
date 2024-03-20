@@ -35,11 +35,17 @@ export default function Details() {
     const confirmDelete = window.confirm("Are you sure you want to delete your account?");
     if (confirmDelete) {
       try {
+        console.log("trry");
          await axios.post(`http://localhost:4545/member/deleteMember`,{
-          userName: memberConnected.userName
+          userId: memberConnected.userId
          });
-         
-        setMemberConnected({});
+        
+         setMemberConnected({userName:""})
+         const temp ={userName:"user not logged in"}
+         // localStorage.removeItem("currentUser")
+          localStorage.setItem(
+           "currentUser",
+           JSON.stringify(temp))
         navigate("/guest");  
       } catch (error) {
         console.error("Failed to delete account:", error);
