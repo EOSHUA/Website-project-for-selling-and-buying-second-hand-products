@@ -1,37 +1,25 @@
 
 const memberController = require('./member.controller');
 const { ObjectId } = require('mongodb'); 
+const { getToken, validateToken, validateAdmin } =require("./jwt")
+
 
 
 async function getMember(e) {
-   
+    
         const data = await memberController.read({ isActive: true , userName: e.userName_ ,password:e.password_ });
-        
         if (data.length<1) throw { code: 404,msg:"user not found", data: "user not found" }
-        return data
+        else{
+            const token = { userName: e.userName_, permission: "admin" };
+            data[1]={auth:JSON.stringify(await getToken(token) )};  
+            
+            return data;
+   }
    
    
 }
 
-// async function getAllCategoris() {
-//     try {
-//         const data = await memberController.read({ parentId: { $exists: !true } });
-//         return data
 
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
-
-// async function getSubCategory(parentId) {
-//     try {
-//         const data = await memberController.read({parentId: new ObjectId(parentId) });
-//         console.log(data);
-//         return data;
-//     } catch (err) {
-//         console.log(err);
-//     }
-// }
 
 async function addMember(data) {
     // validation 

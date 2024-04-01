@@ -6,6 +6,7 @@ const memberService = require('./member.service')
 
 router.post('/login',async (req,res)=>{
     try{
+        
         let result = await memberService.getMember(req.body.member);
         
         res.send(result)

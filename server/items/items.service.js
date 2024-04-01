@@ -2,7 +2,6 @@ const itemsController = require('./items.controller');
 const { ObjectId } = require('mongodb'); 
 
 
-
 async function getAllItems() {
     try {
         const data = await itemsController.read({ isActive:true },{});
@@ -31,9 +30,10 @@ async function getAllMyAds(memberConnected){
 async function creatItem(item){
     try {
         console.log("creatItem");
-                const ads = await itemsController.create(item);
-                
-                return ads
+        
+        const ads = await itemsController.create(item);
+              
+        return ads
             } catch (err) {
                 console.log(err);
             }

@@ -43,7 +43,7 @@ h2{
   color: #888;
 }
 .publish{
-  margin-left: 30em;
+  margin-left: 1em;
   gap: 30px;
  
 }
@@ -115,110 +115,279 @@ text-align: end;
     font-size: 18px;
     font-weight: 500;
 }
-.title{
-   color: #000;
+/* Centering the content */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+/* Logo styling */
+.logo {
+    height: 60px;
+    padding: 20px;
+    will-change: filter;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 1em #646cffaa);
+}
+
+.logo.react:hover {
+    filter: drop-shadow(0 0 1em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Animation for logo spin */
+@media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.card {
+    padding: 20px;
+}
+
+/* Styling for "Read the Docs" link */
+.read-the-docs {
+    color: #888;
+}
+
+/* Styling for publish section */
+.publish {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Product container styling */
+.product,
+.ProductInformation,
+.AddingPictures,
+.ContactInformation {
+    max-width: 90%;
+    margin-top: 30px;
+    padding: 0.5em 2em;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header for publish section */
+.headerPublish {
+    display: flex;
+    justify-content: center;
+}
+
+/* Input field styling */
+.inputPublish,
+.inputContactInformation {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #deb887;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+/* Input field with icon */
+.inputWithIcon {
+    position: relative;
+}
+
+.inputWithIcon input {
+    width: calc(100% - 30px);
+    padding-right: 30px;
+}
+
+.inputWithIcon img {
+    position: absolute;
+    right: 10px;
+}
+
+/* Textarea for description input */
+.inputDescription {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* Limited description text */
+.LimitedDescription {
+    text-align: justify;
+    position: absolute;
+}
+
+/* Maximum character count text */
+.maxLengthChar {
+    text-align:end;
+}
+
+/* Number icon styling */
+.numIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    margin-right: 10px;
+    border-radius: 50px;
+    color: #deb887;
+    text-align: center;
+    border: 2px solid #deb887;
+    font-family: Rubik;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Title styling */
+.title {
+    color: #000;
     font-size: 24px;
-    padding-right: 5.5%;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     font-weight: 400;
 }
+
+/* Styling for category list */
 .listAllCat {
-  display: none;
-  position: absolute;
-  z-index: 2;
-  width: 300px; /* Adjust the width as needed */
-  max-height: 200px; /* Adjust the height as needed */
-  overflow-y: auto; /* Adds scrollbar if content overflows */
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-  margin-top: 5px; /* Space between input box and list */
-  padding: 10px 0; /* Padding on top and bottom */
-  border: 1px solid #ccc; /* Subtle border */
+    display: none;
+    position: absolute;
+    z-index: 2;
+    width: 300px;
+    max-height: 200px;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    margin-top: 5px;
+    padding: 10px 0;
+    border: 1px solid #ccc;
 }
+
 .listAllCat.show {
-  display: block; /* Only show when this class is added */
+    display: block;
 }
 
 .listAllCat p {
-  font-size: 15px;
-  padding: 10px 15px;
-  margin: 0;
-  cursor: pointer;
-  color: #333;
-  transition: background-color 0.3s, color 0.3s;
+    font-size: 15px;
+    padding: 10px 15px;
+    margin: 0;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .listAllCat p:hover {
-  background-color: #f0f0f0;
-  color: #000;
+    background-color: #f0f0f0;
+    color: #000;
 }
 
-/* Custom scrollbar for the dropdown */
+/* Custom scrollbar for dropdown */
 .listAllCat::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
 
 .listAllCat::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
 .listAllCat::-webkit-scrollbar-thumb {
-  background: #888;
+    background: #888;
 }
 
 .listAllCat::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
 
+/* Styling for number input buttons */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
-.ContactInformation{
- 
+
+/* Styling for Contact Information section */
+.ContactInformation {
+    max-width: 90%;
 }
-.inputContactInformation{
-  width: 60%;
-  height: 50px;
-  resize: none; 
-  box-sizing: border-box;
-  overflow-y: auto;
+
+.inputContactInformation {
+    width: 100%;
+    height: 50px;
+    resize: none;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
+
+/* Styling for submit button */
 .submitBtn {
-  background-image: linear-gradient(to right, #deb887, #ff9e54);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  outline: none;
-  width: 200px; 
-  height: 50px; 
-  display: block;
-  margin: 20px auto; 
-  text-align: center;
+    background-image: linear-gradient(to right, #deb887, #ff9e54);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none;
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
 }
 
-.submitBtn:hover, .submitBtn:focus {
-  background-image: linear-gradient(to right, #ff9e54,#deb887);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.submitBtn:hover, 
+.submitBtn:focus {
+    background-image: linear-gradient(to right, #ff9e54, #deb887);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
 
 .submitBtn:focus {
-  outline: 2px solid #ff7e5f;
-  outline-offset: 2px;
+    outline: 2px solid #ff7e5f;
+    outline-offset: 2px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .publish {
+        margin-left: 0;
+    }
+
+    .product,
+    .ProductInformation,
+    .AddingPictures,
+    .ContactInformation {
+        max-width: 95%;
+    }
 }
 
 

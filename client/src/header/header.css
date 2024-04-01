@@ -51,13 +51,23 @@
 
 /* Media query for smartphones */
 @media screen and (max-width: 480px) {
+  .imgHeader {
+    max-width: 170px; /* Further reduced max-width for smaller screens */
+  }
   .header {
     padding: 0.5em; /* Further reduced padding for smartphones */
   }
 
   .buttonHeader {
      /* Further reduced font size for smartphones */
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
+  .menu {
+    /* Further reduced font size for smartphones */
+   font-size: 0.10rem;
+   margin: 2px;
+   padding: 2px;
+ }
+  
 }
 

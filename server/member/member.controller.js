@@ -6,6 +6,7 @@ async function create(data) {
 
 async function read(filter = {}) {
     return data = await memberModel.find(filter)
+    
 }
 
 async function readOne(filter = {}) {

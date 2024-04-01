@@ -1,19 +1,104 @@
-
-.container{
-    display: flex;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+nav {
+  margin-top: 20px;
+  position: relative;
+  margin-left: 7%;
+  max-width: 85%; /* Adjusted for responsiveness */
+  height: 80px; /* Reduced height for smaller screens */
+  background-color: #e1e1df;
+  border-radius: 8px;
+}
+
+nav .itemMenu {
+  line-height: 80px; /* Adjusted line-height for smaller screens */
+  font-size: 16px; /* Reduced font size for smaller screens */
+  font-family: 'Arial', sans-serif;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgb(14, 13, 13);
+  cursor: pointer;
+  padding: 0 10px; /* Reduced padding for smaller screens */
+}
+
+nav .animation {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  transition: all .5s ease 0s;
+  border-radius: 8px;
+}
+
+.itemMenu {
+  width: 17%; /* Equal width for menu items */
+}
+
+nav .start-home, .itemMenu:nth-child(1):hover~.animation {
+  left: calc(8% );
+  width: calc(15% ); /* Adjusted width for better hover effect */
+  height: 100%;
+ 
+  background-color: #deb887;
+}
+
+nav .start-about, .itemMenu:nth-child(2):hover~.animation {
+  left: calc(22% + 20px); /* Adjusted left position for hover effect */
+  background-color: #deb887;
+}
+
+nav .start-blog, .itemMenu:nth-child(3):hover~.animation {
+  left: calc(40% + 20px); /* Adjusted left position for hover effect */
+  background-color: #deb887;
+}
+
+nav .start-portefolio, .itemMenu:nth-child(4):hover~.animation {
+  left: calc(60% + 20px); /* Adjusted left position for hover effect */
+  background-color: #deb887;
+}
+
+nav .start-contact, .itemMenu:nth-child(5):hover~.animation {
+  left: calc(80% + 20px); /* Adjusted left position for hover effect */
+  background-color: #deb887;
+}
+
+h1 {
+  text-align: center;
+  font-size: 24px; /* Reduced font size for smaller screens */
+  color: #ecf0f1;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: 'Cherry Swash', cursive;
+}
+
+span {
+  color: #2BD6B4;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+
   nav {
-    margin: 27px auto 0;
-    position: relative;
-    max-width: 1500px;
-    height: 100px;
-    background-color: #e1e1df;
-    border-radius: 8px;
+    margin-left: 10%;
+    max-width: 80%; 
+    text-align: center;
+      height: 60px; /* Reduced height for smaller screens */
+      width: 90%;
   }
   nav .itemMenu {
-    line-height: 50px;
-    height: 100%;
-    font-size: 25px;
+    line-height: 60px; /* Adjusted line-height for smaller screens */
+    font-size: 13px; /* Reduced font size for smaller screens */
     font-family: 'Arial', sans-serif;
     display: inline-block;
     position: relative;
@@ -23,67 +108,55 @@
     text-align: center;
     color: rgb(14, 13, 13);
     cursor: pointer;
-    padding: 25px;
+    padding: 0 1px; 
   }
-  nav .animation {
-    position: absolute;
-    top: 0;
-    z-index: 0;
-    transition: all .5s ease 0s;
-    border-radius: 8px;
-  }
-  .itemMenu:nth-child(1) {
-    width: 15%;
-    
-  }
-  .itemMenu:nth-child(2) {
-    width: 15%;
-  }
-  .itemMenu:nth-child(3) {
-    width: 15%;
-  }
-  .itemMenu:nth-child(4) {
-    width: 15%;
-  }
- .itemMenu:nth-child(5) {
-    width: 15%;
+ 
+  
+  h1 {
+      font-size: 15px; /* Reduced font size for smaller screens */
   }
   nav .start-home, .itemMenu:nth-child(1):hover~.animation {
-    width: 250px;
-    height: 90%;
-    left: 3%;
+    width: calc(20%); /* Adjusted width for better hover effect */
+    height: 100%;
+    left: 0;
     background-color: #deb887;
-  }
-  nav .start-about, .itemMenu:nth-child(2):hover~.animation {
-    width: 250px;
-    left: 20%;
-    background-color: #deb887;
-  }
-  nav .start-blog, .itemMenu:nth-child(3):hover~.animation {
-    width: 250px;
-    left: 40%;
-    background-color:#deb887;
-  }
-  nav .start-portefolio, .itemMenu:nth-child(4):hover~.animation {
-    width: 250px;
-    left: 60%;
-    background-color: #deb887;
-  }
-  nav .start-contact, .itemMenu:nth-child(5):hover~.animation {
-    width: 250px;
-    left: 80%;
-    background-color:#deb887;
-  }
-  h1 {
-    text-align: center;
-    text-align: center;
-    font-size: 30px;
-    color: #ecf0f1;
-    text-shadow: 2px 2px 4px #000000;
-    font-family: 'Cherry Swash', cursive;
-   ;
-  }
-  span {
-      color: #2BD6B4;
   }
   
+  nav .start-about, .itemMenu:nth-child(2):hover~.animation {
+    left: calc(20% + 20px); /* Adjusted left position for hover effect */
+    background-color: #deb887;
+  }
+  
+  nav .start-blog, .itemMenu:nth-child(3):hover~.animation {
+    left: calc(40% + 20px); /* Adjusted left position for hover effect */
+    background-color: #deb887;
+  }
+  
+  nav .start-portefolio, .itemMenu:nth-child(4):hover~.animation {
+    left: calc(60% + 20px); /* Adjusted left position for hover effect */
+    background-color: #deb887;
+  }
+  
+  nav .start-contact, .itemMenu:nth-child(5):hover~.animation {
+    left: calc(80% + 20px); /* Adjusted left position for hover effect */
+    background-color: #deb887;
+  }
+
+  
+}
+@media screen and (max-width: 582px) {
+  nav {
+      height: auto; /* Allow menu items to expand vertically on smartphones */
+      flex-direction: column; /* Stack menu items vertically */
+      align-items: center; /* Center menu items horizontally */
+  }
+
+  nav .itemMenu {
+      width: 100%; /* Full width for menu items on smartphones */
+      border-bottom: 1px solid #ccc; /* Add bottom border to separate menu items */
+  }
+
+  nav .animation {
+      display: none; /* Hide animation element on smartphones */
+  }
+}

@@ -66,7 +66,7 @@ export default function Header() {
           
               {memberConnected.userName && <button className="buttonHeader "> 
               {
-              window.location.href.includes("member") ?<div className="buttonHeader" onClick={goToHome}>
+              window.location.href.includes("member") ?<div className="buttonHeader menu" onClick={goToHome}>
                 <img src={home} width={50} ></img></div>:
                 <div className="buttonHeader" onClick={goToDeshboard}><img src={deshboard} width={50} >
                 </img></div>}

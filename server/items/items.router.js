@@ -1,5 +1,6 @@
 const express = require('express'),
     router = express.Router();
+    const { getToken, validateToken, validateAdmin } =require("../member/jwt")
 
 const itemsService = require('./items.service')
 
@@ -43,9 +44,11 @@ router.post('/getMyAds', async (req, res) => {
 })
 
 
-router.post('/creatItem', async (req, res) => {
+router.post('/creatItem',async (req, res,next) => {
     try {
+        //validateToken(req, res,next);
         let result = await itemsService.creatItem(req.body.item);
+       
         res.send(result)
     }
     catch (err) {

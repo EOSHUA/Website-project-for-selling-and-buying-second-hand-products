@@ -6,6 +6,7 @@ import "./publish.css";
 import search from "./Photos/search.png";
 import UploadImage from "./UploadImage";
 import { memberContext } from "../layout/Layout";
+import Cookies from "js-cookie";
 
 export default function Publish() {
   const { memberConnected, setMemberConnected } = useContext(memberContext);
@@ -104,8 +105,12 @@ const preparationToSend= async() =>{
 
 useEffect(()=>{
   if (!isInitialRender) {
-   axios.post("http://localhost:4545/items/creatItem", {
+    console.log(submitValues);
+   axios.post("http://localhost:4545/items/creatItem",{ 
     item: submitValues,
+    headers: {
+      Authorization: "Bearer " + Cookies.get("auth"),
+    },
    })}
    else{
      setIsInitialRender(false);

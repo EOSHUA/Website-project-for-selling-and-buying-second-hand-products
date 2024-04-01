@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { memberContext } from "../layout/Layout";
 import home from "./imeges/home.png"
+import Cookies from 'js-cookie'
 
 export default function Login() {
   const { memberConnected, setMemberConnected } = useContext(memberContext);
@@ -11,6 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+ 
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
@@ -28,16 +30,22 @@ export default function Login() {
     };
 
     try {
-        const response = await axios.post("http://localhost:4545/member/login", {
+        await axios.post("http://localhost:4545/member/login", {
           member,
         }).then((response) => {
         if (response.data && response.data.length > 0) {
+          
             setMemberConnected({
             userName: response.data[0].userName,
             email: response.data[0].email,
             password: response.data[0].password,
             userId: response.data[0]._id,
             });
+            const token = response.data[1].auth;
+            Cookies.set("auth", (token))
+            
+
+          
             goToDeshboard();
         } else {
             throw new Error("Received an empty data array from the server");
@@ -90,16 +98,7 @@ export default function Login() {
           value={password}
           onChange={handlePasswordChange}
         />
-        {/* <div className="remember_me_warp">
-          <input
-            type="checkbox"
-            className="checkbox"
-            id="remember_me"
-            checked={rememberMe}
-            onChange={(event) => setRememberMe(event.target.checked)}
-          />
-          <label  htmlFor="remember_me">Remember me</label>
-        </div> */}
+       
 
         <input type="submit" className="buttonLogin" value="Login" />
         <p>

@@ -5,6 +5,7 @@ async function read(filter = {}) {
     return data = await guestModel.find(filter)
 }
 async function create(add) {
+    
     const item={
     idCategory:add.category,
     idSubCategory:add.subCategory,
